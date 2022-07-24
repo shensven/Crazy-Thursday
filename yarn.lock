@@ -5629,6 +5629,11 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==
 
+react-native-bars@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-bars/-/react-native-bars-1.2.0.tgz#0a240d3fbe349c2596b04edf647c3ef87aa69c01"
+  integrity sha512-2pXnT6zimIg7wCniZKd3kYgP7Zz0RDhUYSi0cdFANSSyv7BiqyvRNrFpkMXbaz/zfEnYiSfSe7XjT/L4MfdaSQ==
+
 react-native-codegen@^0.69.1:
   version "0.69.1"
   resolved "https://registry.yarnpkg.com/react-native-codegen/-/react-native-codegen-0.69.1.tgz#3632be2f24464e6fad8dd11a25d1b6f3bc2c7d0b"

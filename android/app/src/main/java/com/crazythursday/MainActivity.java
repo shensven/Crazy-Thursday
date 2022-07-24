@@ -3,6 +3,7 @@ package com.crazythursday;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
+import com.zoontek.rnbars.RNBars; // <- add this necessary import
 
 public class MainActivity extends ReactActivity {
 
@@ -43,6 +44,12 @@ public class MainActivity extends ReactActivity {
       // If you opted-in for the New Architecture, we enable Concurrent Root (i.e. React 18).
       // More on this on https://reactjs.org/blog/2022/03/29/react-v18.html
       return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
+    }
+
+    @Override
+    protected void loadApp(String appKey) {
+      super.loadApp(appKey);
+      RNBars.init(getPlainActivity(), "dark-content"); // <- initialize with initial bars styles (could be light-content)
     }
   }
 }

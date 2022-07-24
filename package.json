@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "18.0.0",
-    "react-native": "0.69.2"
+    "react-native": "0.69.2",
+    "react-native-bars": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -32,6 +33,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "setupFiles": [
+      "<rootDir>/jest.setup.js"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
