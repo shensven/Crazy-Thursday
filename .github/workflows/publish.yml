@@ -1,0 +1,214 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}
+
+jobs:
+  publish_android:
+    name: Publish Android
+    if: ${{ github.repository_owner == 'shensven' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+
+      - name: Install Azul JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Cache gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/android/*.gradle', '**/android/*.properties', '**/android/gradle/wrapper/gradle-wrapper.properties', '**/android/app/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Cache yarn dependencies
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+
+      - name: Get app version
+        id: app_version
+        run: |
+          APP_VERSION=$(node -e "console.log(require('./package.json').version)")
+          echo ::set-output name=app_version::$APP_VERSION
+
+      - name: Release for Android & Play Store
+        env:
+          VERSION_CODE: ${{ github.run_number }}
+          VERSION_NAME: ${{ steps.app_version.outputs.app_version }}
+        run: |
+          cd android && chmod +x gradlew
+          ./gradlew assembleRelease
+          ./gradlew bundleRelease
+
+      - name: Upload .apk to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: v${{ steps.app_version.outputs.app_version }}
+          tag: v${{ steps.app_version.outputs.app_version }}
+          allowUpdates: true
+          draft: true
+          artifacts: 'android/app/build/outputs/apk/release/*.*'
+
+      - name: Backup .aab to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: App Store Backup
+          tag: app-store-backup
+          allowUpdates: true
+          draft: true
+          artifacts: 'android/app/build/outputs/bundle/release/*.aab'
+
+  publish_ios:
+    name: Publish iOS
+    if: ${{ github.repository_owner == 'shensven' }}
+
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Cache pods dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/Library/Caches/CocoaPods
+            ios/Pods
+          key: ${{ runner.os }}-pods-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pods-
+
+      - name: Cache DerivedData
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/Library/Developer/Xcode/DerivedData
+          key: ${{ runner.os }}-derivedData-${{ hashFiles('ios/Podfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-derivedData-
+
+      - name: Cache yarn dependencies
+        uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: |
+            node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Restore profile
+        env:
+          P12_CERTIFICATE_BASE64: ${{ secrets.P12_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          KEYCHAIN_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          PROVISIONING_PROFILE_BASE64: ${{ secrets.PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          P12_CERTIFICATE_PATH=${{ runner.temp }}/certificate.p12
+          PROVISIONING_PROFILE_PATH=${{ runner.temp }}/pp.mobileprovision
+          KEYCHAIN_PATH=${{ runner.temp }}/app_signing.keychain-db
+
+          echo -n "$P12_CERTIFICATE_BASE64" | base64 --decode --output $P12_CERTIFICATE_PATH
+          echo -n "$PROVISIONING_PROFILE_BASE64" | base64 --decode --output $PROVISIONING_PROFILE_PATH
+
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp $PROVISIONING_PROFILE_PATH ~/Library/MobileDevice/Provisioning\ Profiles/pp.mobileprovision
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          security set-keychain-settings -lut 3600 $KEYCHAIN_PATH
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          security import $P12_CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          security list-keychain -d user -s $KEYCHAIN_PATH
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          cd ios && pod install --repo-update
+
+      - name: Genarate license compliance
+        run: |
+          npx -y license-compliance --direct --report detailed --format json > ./src/assets/openSourceLibraries/licenseCompliance.json
+
+      - name: Get app version
+        id: app_version
+        run: |
+          APP_VERSION=$(node -e "console.log(require('./package.json').version)")
+          echo ::set-output name=app_version::$APP_VERSION
+
+      - name: Release for App Store & Upload to TestFlight
+        run: |
+          cd ios
+          xcrun agvtool new-marketing-version ${{ steps.app_version.outputs.app_version }}
+          xcrun agvtool new-version -all ${{ github.run_number }}
+
+          xcodebuild archive \
+            -workspace readhub_rn.xcworkspace \
+            -scheme readhub_rn \
+            -configuration Release \
+            -archivePath ${{ runner.temp }}/readhub_rn.xcarchive \
+            -allowProvisioningUpdates \
+            -quiet \
+            PROVISIONING_PROFILE_SPECIFIER="Readhub Distribution" \
+            CODE_SIGN_STYLE="Manual" \
+            CODE_SIGN_IDENTITY="iPhone Distribution"
+
+          xcodebuild  -exportArchive \
+            -archivePath ${{ runner.temp }}/readhub_rn.xcarchive \
+            -exportPath ${{ runner.temp }} \
+            -exportOptionsPlist readhub_rn/ExportOptions.plist
+            -allowProvisioningUpdates \
+            -quiet \
+            | xcpretty
+
+          xcrun altool --upload-app \
+            --type ios \
+            --file "${{ runner.temp }}/readhub_rn.ipa" \
+            --username "${{ secrets.APPLE_ID }}" \
+            --password "${{ secrets.APPLE_ID_PASS }}" \
+
+      - name: Backup .ipa to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: App Store Backup
+          tag: app-store-backup
+          allowUpdates: true
+          draft: true
+          artifacts: '${{ runner.temp }}/*.ipa'
