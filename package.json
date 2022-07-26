@@ -24,6 +24,7 @@
     "react-native": "0.69.2",
     "react-native-bars": "^1.2.0",
     "react-native-device-info": "^10.0.2",
+    "react-native-fade": "^2.1.1",
     "react-native-gesture-handler": "^2.5.0",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-paper": "^4.12.3",
