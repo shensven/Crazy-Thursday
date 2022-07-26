@@ -162,10 +162,6 @@ jobs:
           yarn install --frozen-lockfile
           cd ios && pod install --repo-update
 
-      - name: Genarate license compliance
-        run: |
-          npx -y license-compliance --direct --report detailed --format json > ./src/assets/openSourceLibraries/licenseCompliance.json
-
       - name: Get app version
         id: app_version
         run: |
