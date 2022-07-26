@@ -50,6 +50,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Setting up Gradle variables
+        run: |
+          cd android
+          echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.MYAPP_UPLOAD_STORE_PASSWORD }}" >> gradle.properties
+          echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.MYAPP_UPLOAD_KEY_PASSWORD }}" >> gradle.properties
+
+      - name: Restore jks
+        run: |
+          cd android/app
+          echo -n "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > release.keystore
+
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
