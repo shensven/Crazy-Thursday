@@ -1,6 +1,6 @@
 <div align="center" >
   <h1>
-    <img src="./src/assets/appIcon/AppIconAlpha.png" width="180px" height="180px" />
+    <img src="./src/assets/appIcon/AppIconRound.png" width="168px" height="168px" />
     <p>疯狂星期四</p>
   </h1>
 </div>
