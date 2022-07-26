@@ -1,117 +1,118 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
+import 'react-native-gesture-handler';
+import React from 'react';
+import {StatusBar} from 'react-native-bars';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator, HeaderStyleInterpolators, TransitionPresets} from '@react-navigation/stack';
+import {useAtom} from 'jotai';
+import {atomStatusBarStyle} from './src/atoms/appAtom';
+import Init from './src/screens/Init';
+import Home from './src/screens/Home';
+import HomeHeaderRight from './src/screens/components/HomeHeaderRight';
+import Detail from './src/screens/Detail';
+import Settings from './src/screens/Settings';
+import BrandEditer from './src/screens/BrandEditer';
+import PrivacyPolicy from './src/screens/PrivacyPolicy';
+import Toast from './src/screens/components/Toast';
 
-import React, {type PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const MainStack = () => {
+  const Stack = createStackNavigator();
+  const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
+    <NavigationContainer>
+      <StatusBar animated={true} barStyle={statusBarStyle} />
+      <Stack.Navigator
+        screenOptions={{
+          headerTintColor: '#E1352F',
+          headerTitleStyle: {
+            fontSize: 18,
+            fontWeight: 'bold',
           },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+          gestureEnabled: true,
+          ...TransitionPresets.SlideFromRightIOS,
+          headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+        }}>
+        <Stack.Screen
+          name="Init"
+          component={Init}
+          options={{
+            title: '',
+            headerTransparent: true,
+            headerTintColor: 'transparent',
+            cardStyle: {
+              backgroundColor: '#fff',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: '疯狂星期四 🎉',
+            headerTitleAlign: 'left',
+            headerTitleStyle: {
+              color: '#000',
+              fontSize: 18,
+              fontWeight: 'bold',
+            },
+            headerRight: () => <HomeHeaderRight />,
+            headerStyle: {
+              elevation: 0, // Android
+              shadowOpacity: 0, // iOS
+            },
+            cardStyle: {
+              backgroundColor: '#fff',
+            },
+            ...TransitionPresets.FadeFromBottomAndroid,
+          }}
+          listeners={{
+            focus: () => setStatusBarStyle('dark-content'),
+          }}
+        />
+        <Stack.Screen
+          name="Detail"
+          component={Detail}
+          options={{
+            title: '',
+            headerBackTitle: '返回',
+            headerTransparent: true,
+            headerTintColor: '#fff',
+            cardStyle: {backgroundColor: '#ede0de'},
+            ...TransitionPresets.ModalPresentationIOS,
+          }}
+          listeners={{
+            focus: () => setStatusBarStyle('light-content'),
+          }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={Settings}
+          options={{
+            title: '设置',
+          }}
+        />
+        <Stack.Screen
+          name="BrandEditer"
+          component={BrandEditer}
+          options={{
+            title: '编辑品牌关键字',
+          }}
+        />
+        <Stack.Screen
+          name="PrivacyPolicy"
+          component={PrivacyPolicy}
+          options={{
+            title: '隐私政策',
+          }}
+        />
+      </Stack.Navigator>
+      <Toast />
+    </NavigationContainer>
   );
 };
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+const App: React.FC = () => {
+  return <MainStack />;
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
