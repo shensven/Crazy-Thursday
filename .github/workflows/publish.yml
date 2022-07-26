@@ -175,10 +175,10 @@ jobs:
           xcrun agvtool new-version -all ${{ github.run_number }}
 
           xcodebuild archive \
-            -workspace readhub_rn.xcworkspace \
-            -scheme readhub_rn \
+            -workspace CrazyThursday.xcworkspace \
+            -scheme CrazyThursday \
             -configuration Release \
-            -archivePath ${{ runner.temp }}/readhub_rn.xcarchive \
+            -archivePath ${{ runner.temp }}/CrazyThursday.xcarchive \
             -allowProvisioningUpdates \
             -quiet \
             PROVISIONING_PROFILE_SPECIFIER="Readhub Distribution" \
@@ -186,16 +186,16 @@ jobs:
             CODE_SIGN_IDENTITY="iPhone Distribution"
 
           xcodebuild  -exportArchive \
-            -archivePath ${{ runner.temp }}/readhub_rn.xcarchive \
+            -archivePath ${{ runner.temp }}/CrazyThursday.xcarchive \
             -exportPath ${{ runner.temp }} \
-            -exportOptionsPlist readhub_rn/ExportOptions.plist
+            -exportOptionsPlist CrazyThursday/ExportOptions.plist
             -allowProvisioningUpdates \
             -quiet \
             | xcpretty
 
           xcrun altool --upload-app \
             --type ios \
-            --file "${{ runner.temp }}/readhub_rn.ipa" \
+            --file "${{ runner.temp }}/CrazyThursday.ipa" \
             --username "${{ secrets.APPLE_ID }}" \
             --password "${{ secrets.APPLE_ID_PASS }}" \
 
