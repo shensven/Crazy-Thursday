@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.crazythursday">
+  package="com.shensven.crazythursday">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

@@ -1,4 +1,4 @@
-package com.crazythursday.newarchitecture;
+package com.shensven.crazythursday.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.crazythursday.BuildConfig;
-import com.crazythursday.newarchitecture.components.MainComponentsRegistry;
-import com.crazythursday.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.shensven.crazythursday.BuildConfig;
+import com.shensven.crazythursday.newarchitecture.components.MainComponentsRegistry;
+import com.shensven.crazythursday.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

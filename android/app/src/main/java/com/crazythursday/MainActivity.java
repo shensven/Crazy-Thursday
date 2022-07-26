@@ -1,4 +1,4 @@
-package com.crazythursday;
+package com.shensven.crazythursday;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;

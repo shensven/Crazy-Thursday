@@ -1,4 +1,4 @@
-package com.crazythursday.newarchitecture.components;
+package com.shensven.crazythursday.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

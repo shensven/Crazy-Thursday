@@ -1,4 +1,4 @@
-package com.crazythursday.newarchitecture.modules;
+package com.shensven.crazythursday.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
