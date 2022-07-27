@@ -6,6 +6,8 @@
   "packageRules": [
     {
       "groupName": "dependencies",
+      "matchFiles": ["package.json"],
+      "matchManagers": ["yarn"],
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
@@ -35,6 +37,8 @@
     },
     {
       "groupName": "devDependencies",
+      "matchFiles": ["package.json"],
+      "matchManagers": ["yarn"],
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
