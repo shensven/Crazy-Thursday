@@ -20,17 +20,13 @@
 
 ## 📦 安装方式
 
-### 前往 App Store 下载 iOS 版本
+### iOS 版本
 
-iOS 正式版尚未发布，不过你可以[申请](https://forms.gle/yUHmX9MVkbEDssPM7)加入我们的 TestFlight 进行先行体验
+- iOS 正式版尚未发布，不过你可以[申请](https://forms.gle/yUHmX9MVkbEDssPM7)加入我们的 TestFlight 进行先行体验
 
-### 前往 Play Store 下载 Android 版本
+### Android 版本
 
-Android 正式版尚未发布，不过你可以在 Github [Release](https://github.com/shensven/Crazy-Thursday/releases) 页面下载预览版 apk 安装包进行先行体验
-
-### 前往 GitHub Release 下载 Android apk
-
-[Release](https://github.com/shensven/Crazy-Thursday/releases)
+- Android 正式版尚未发布，不过你可以在 Github [Release](https://github.com/shensven/Crazy-Thursday/releases) 页面下载预览版 apk 安装包进行先行体验
 
 ## 🔨 编译
 
