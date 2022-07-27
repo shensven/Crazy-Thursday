@@ -74,7 +74,6 @@ const MainStack = () => {
           component={Detail}
           options={{
             title: '',
-            headerBackTitle: '返回',
             headerTransparent: true,
             headerTintColor: '#fff',
             cardStyle: {backgroundColor: '#ede0de'},
