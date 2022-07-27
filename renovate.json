@@ -1,5 +1,44 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:base"],
-  "baseBranches": ["dev"]
+  "baseBranches": ["dev"],
+  "semanticCommits": "enabled",
+  "packageRules": [
+    {
+      "groupName": "dependencies",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "enabled": false,
+      "excludePackageNames": [
+        "@react-native-async-storage/async-storage",
+        "@react-native-clipboard/clipboard",
+        "@react-native-community/blur",
+        "@react-native-masked-view/masked-view",
+        "@react-navigation/elements",
+        "@react-navigation/native",
+        "@react-navigation/stack",
+        "axios",
+        "jotai",
+        "lodash",
+        "react-native-bars",
+        "react-native-bootsplash",
+        "react-native-device-info",
+        "react-native-fade",
+        "react-native-gesture-handler",
+        "react-native-linear-gradient",
+        "react-native-paper",
+        "react-native-reanimated",
+        "react-native-safe-area-context",
+        "react-native-screens",
+        "react-native-svg"
+      ]
+    },
+    {
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch", "minor"],
+      "enabled": false,
+      "excludePackageNames": ["@types/lodash"]
+    }
+  ]
 }
