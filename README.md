@@ -14,7 +14,7 @@
 
 发给你的好友，让 TA 请你吃炸鸡！
 
-|                       iOS Home                       |                    iOS Detail                    |
+|                       iOS Home                       |                       iOS Detail                       |
 | :--------------------------------------------------: | :----------------------------------------------------: |
 | ![Screenshot 1](src/assets/screenshots/ios-home.png) | ![Screenshot 2](src/assets/screenshots/ios-detail.png) |
 
@@ -91,7 +91,9 @@ yarn test
 ```
 
 ```sh
-cd android && chmod +x gradlew && ./gradlew test
+cd android
+chmod +x gradlew
+./gradlew test
 ```
 
 ### iOS 真机部署
@@ -103,7 +105,8 @@ yarn ios --configuration Release --device
 ### 打包 Android apk
 
 ```sh
-cd android && ./gradlew assembleRelease
+cd android
+./gradlew assembleRelease
 ```
 
 ### 生成开屏图
@@ -114,3 +117,7 @@ yarn react-native generate-bootsplash src/assets/splash/bootsplash.png \
   --logo-width=192 \
   --flavor=main
 ```
+
+## 许可证合规性
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday?ref=badge_large)
