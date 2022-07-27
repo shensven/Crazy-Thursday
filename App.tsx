@@ -3,6 +3,7 @@ import React from 'react';
 import {StatusBar} from 'react-native-bars';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderStyleInterpolators, TransitionPresets} from '@react-navigation/stack';
+import RNBootSplash from 'react-native-bootsplash';
 import {useAtom} from 'jotai';
 import {atomStatusBarStyle} from './src/atoms/appAtom';
 import Init from './src/screens/Init';
@@ -19,7 +20,7 @@ const MainStack = () => {
   const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
 
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={() => RNBootSplash.hide({fade: true})}>
       <StatusBar animated={true} barStyle={statusBarStyle} />
       <Stack.Navigator
         screenOptions={{
