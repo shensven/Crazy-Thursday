@@ -54,6 +54,8 @@ jobs:
       - name: Gradlew test
         run: |
           cd android && chmod +x gradlew 
+          echo "MYAPP_UPLOAD_STORE_PASSWORD=test" >> gradle.properties
+          echo "MYAPP_UPLOAD_KEY_PASSWORD=test" >> gradle.properties
           ./gradlew test
 
       - name: Jest
