@@ -18,15 +18,15 @@
 | :--------------------------------------------------: | :----------------------------------------------------: |
 | ![Screenshot 1](src/assets/screenshots/ios-home.png) | ![Screenshot 2](src/assets/screenshots/ios-detail.png) |
 
-## 📦 安装方式
+## 📦 分发方式
 
 ### iOS 版本
 
-- iOS 正式版尚未发布，不过你可以[申请](https://forms.gle/yUHmX9MVkbEDssPM7)加入我们的 TestFlight 进行先行体验
+- iOS 正式版尚未发布，不过你可以通过[Google 表单](https://forms.gle/yUHmX9MVkbEDssPM7)或[腾讯问卷](https://wj.qq.com/s2/10577336/bd81)向我们申请，以加入 TestFlight 进行先行体验
 
 ### Android 版本
 
-- Android 正式版尚未发布，不过你可以在 Github [Release](https://github.com/shensven/Crazy-Thursday/releases) 页面下载预览版 apk 安装包进行先行体验
+- Android 正式版尚未发布，不过你可以通过 [GitHub Release](https://github.com/shensven/Crazy-Thursday/releases) 下载 apk 安装包进行先行体验
 
 ## 🔨 编译
 
