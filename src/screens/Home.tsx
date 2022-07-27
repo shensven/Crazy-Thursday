@@ -81,7 +81,7 @@ const Home: React.FC = () => {
     onStart: () => (pressed.value = true),
     onEnd: () => (pressed.value = false),
     onFail: () => (pressed.value = false),
-    // onFinish: () => (pressed.value = false),
+    onFinish: () => (pressed.value = false),
   });
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -103,8 +103,6 @@ const Home: React.FC = () => {
   }, [copywriter.version]);
 
   useEffect(() => {
-    console.log(brandKeywords);
-    console.log(copywriter.bundle[mainIndex.text].text);
     if (copywriter.bundle.length === 1) {
       setCurrentCopywriter(
         copywriter.bundle[0].text
