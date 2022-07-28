@@ -1,9 +1,11 @@
 import axios from 'axios';
 import {useAtom} from 'jotai';
-import {atomWithStorageCopywriter, type Copywriter} from '../atoms/appAtom';
+import {atomCopywriter} from '../atoms/appAtom';
+import type {Copywriter} from '../atoms/appAtom';
+import {storage} from '../../App';
 
 const useCopywriter = () => {
-  const [copywriter, setCopywriter] = useAtom(atomWithStorageCopywriter);
+  const [copywriter, setCopywriter] = useAtom(atomCopywriter);
 
   const updateCopywriter = async () => {
     try {
@@ -11,12 +13,13 @@ const useCopywriter = () => {
       if (resp.status === 200) {
         if (resp.data.version > copywriter.version) {
           setCopywriter(resp.data);
+          storage.set('@copywriter', JSON.stringify(resp.data));
         }
       }
     } catch {}
   };
 
-  return {copywriter, setCopywriter, updateCopywriter};
+  return {copywriter, updateCopywriter};
 };
 
 export default useCopywriter;

@@ -4,9 +4,10 @@ import {StatusBar} from 'react-native-bars';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderStyleInterpolators, TransitionPresets} from '@react-navigation/stack';
 import RNBootSplash from 'react-native-bootsplash';
+import {MMKV} from 'react-native-mmkv';
+import {initializeMMKVFlipper} from 'react-native-mmkv-flipper-plugin';
 import {useAtom} from 'jotai';
 import {atomStatusBarStyle} from './src/atoms/appAtom';
-import Init from './src/screens/Init';
 import Home from './src/screens/Home';
 import HomeHeaderRight from './src/screens/components/HomeHeaderRight';
 import Detail from './src/screens/Detail';
@@ -15,7 +16,13 @@ import BrandEditer from './src/screens/BrandEditer';
 import PrivacyPolicy from './src/screens/PrivacyPolicy';
 import Toast from './src/screens/components/Toast';
 
-const MainStack = () => {
+export const storage = new MMKV();
+
+if (__DEV__) {
+  initializeMMKVFlipper({default: storage});
+}
+
+const MainStack: React.FC = () => {
   const Stack = createStackNavigator();
   const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
 
@@ -33,18 +40,6 @@ const MainStack = () => {
           ...TransitionPresets.SlideFromRightIOS,
           headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
         }}>
-        <Stack.Screen
-          name="Init"
-          component={Init}
-          options={{
-            title: '',
-            headerTransparent: true,
-            headerTintColor: 'transparent',
-            cardStyle: {
-              backgroundColor: '#fff',
-            },
-          }}
-        />
         <Stack.Screen
           name="Home"
           component={Home}
@@ -64,7 +59,6 @@ const MainStack = () => {
             cardStyle: {
               backgroundColor: '#fff',
             },
-            ...TransitionPresets.FadeFromBottomAndroid,
           }}
           listeners={{
             focus: () => setStatusBarStyle('dark-content'),

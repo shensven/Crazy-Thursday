@@ -1,20 +1,14 @@
-import React, {useCallback, useEffect, useLayoutEffect, useState} from 'react';
-import {Image, RefreshControl, useWindowDimensions, View} from 'react-native';
-import Animated, {
-  useAnimatedGestureHandler,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-} from 'react-native-reanimated';
-import {type GestureEvent, ScrollView, TapGestureHandler} from 'react-native-gesture-handler';
-import {Button, Text} from 'react-native-paper';
+import React, {useEffect, useState} from 'react';
+import {Image, useWindowDimensions, View} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
+import {Button, Text, TouchableRipple} from 'react-native-paper';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
+import {useUpdateEffect} from 'ahooks';
 import {random} from 'lodash';
-import mockWait from '../utils/mockWait';
 import useCopywriter from '../utils/useCopywriter';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
@@ -32,15 +26,15 @@ export const imageSets = [
   require('./assets/images/9.jpg'),
 ];
 
-export interface MainIndex {
+export interface Index {
   image: number;
   text: number;
 }
 
 type StackParamList = {
   Detail: {
-    mainIndex: MainIndex;
-    currentCopywriter: string;
+    index: Index;
+    currentCopywriterWithBrand: string;
   };
 };
 type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
@@ -51,110 +45,85 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation<ScreenNavigationProp>();
 
-  const pressed = useSharedValue(false);
-
-  const {brandKeywords} = useBrandKeywords();
-  const {copywriter, updateCopywriter} = useCopywriter();
-
   const {copyToClipboard} = useClipboard();
 
-  const [mainIndex, setMainIndex] = useState<MainIndex>({
-    image: 0,
-    text: 0,
-  });
-  const [currentCopywriter, setCurrentCopywriter] = useState('');
+  const {copywriter, updateCopywriter} = useCopywriter();
+  const {brandKeywords} = useBrandKeywords();
 
-  const uas = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: withSpring(pressed.value ? 0.95 : 1, {
-            overshootClamping: true,
-            stiffness: 300,
-          }),
-        },
-      ],
-    };
+  const [index, setIndex] = useState<Index>({
+    image: random(0, 9),
+    text: copywriter.bundle.length > 1 ? random(0, copywriter.bundle.length - 1) : 0,
   });
 
-  const eventHandler = useAnimatedGestureHandler<GestureEvent>({
-    onStart: () => (pressed.value = true),
-    onEnd: () => (pressed.value = false),
-    onFail: () => (pressed.value = false),
-    onFinish: () => (pressed.value = false),
+  const [currentCopywriter, setCurrentCopywriter] = useState({
+    origin: '',
+    withBrand: '',
   });
 
-  const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = useCallback(() => {
-    setRefreshing(true);
-    mockWait(random(30, 200)).then(() => {
-      setRefreshing(false);
-      setMainIndex({
-        image: random(0, 9),
-        text: random(0, copywriter.bundle.length - 1),
-      });
-      pressed.value = false;
-    });
-  }, [copywriter.version]);
-
-  const onFailed = useCallback(() => {
-    pressed.value = false;
-  }, [copywriter.version]);
-
-  useEffect(() => {
-    if (copywriter.bundle.length === 1) {
-      setCurrentCopywriter(
-        copywriter.bundle[0].text
-          .replace('${brand-zh-CN}', brandKeywords.Chinese)
-          .replace('${brand-en-US}', brandKeywords.English),
-      );
-    } else {
-      setCurrentCopywriter(
-        copywriter.bundle[mainIndex.text].text
-          .replace('${brand-zh-CN}', brandKeywords.Chinese)
-          .replace('${brand-en-US}', brandKeywords.English),
-      );
-    }
-  }, [mainIndex.text]);
-
-  useLayoutEffect(() => {
-    setMainIndex({
+  const refresh = () => {
+    setIndex({
       image: random(0, 9),
       text: random(0, copywriter.bundle.length - 1),
     });
+  };
+
+  useEffect(() => {
+    setCurrentCopywriter({
+      origin: copywriter.bundle[index.text].text,
+      withBrand: copywriter.bundle[index.text].text
+        .replace(/\${brand-zh-CN}/g, brandKeywords.Chinese)
+        .replace(/\${brand-en-US}/g, brandKeywords.English),
+    });
+  }, [index]);
+
+  useUpdateEffect(() => {
+    setCurrentCopywriter({
+      ...currentCopywriter,
+      withBrand: currentCopywriter.origin
+        .replace(/\${brand-zh-CN}/g, brandKeywords.Chinese)
+        .replace(/\${brand-en-US}/g, brandKeywords.English),
+    });
+  }, [brandKeywords]);
+
+  useEffect(() => {
     updateCopywriter();
   }, []);
 
   return (
     <View style={{flex: 1}}>
-      <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-        <TapGestureHandler
-          onGestureEvent={eventHandler}
-          onActivated={() => navigation.navigate('Detail', {mainIndex, currentCopywriter})}
-          onFailed={() => onFailed()}>
-          <Animated.View style={[{margin: 16}, uas]}>
-            <View
-              style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: windowHeight / 2,
-                borderRadius: 12,
-                backgroundColor: '#E1352F',
-                shadowColor: '#000',
-                shadowOpacity: 0.2,
-                shadowOffset: {width: 0, height: 4},
-                shadowRadius: 8,
-                elevation: 8,
-              }}>
+      <ScrollView>
+        <View
+          style={{
+            margin: 16,
+            padding: 6,
+            shadowColor: '#000',
+            shadowOpacity: 0.2,
+            shadowOffset: {width: 0, height: 4},
+            shadowRadius: 8,
+            elevation: 8,
+            backgroundColor: '#E1352F',
+            borderRadius: 12,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <TouchableRipple
+            borderless
+            style={{borderTopLeftRadius: 8, borderTopRightRadius: 8}}
+            onPress={() =>
+              navigation.navigate('Detail', {index, currentCopywriterWithBrand: currentCopywriter.withBrand})
+            }>
+            <View>
               <MaskedView
                 maskElement={
-                  <LinearGradient colors={['#fff', 'transparent']} locations={[0.45, 1]} style={{flex: 1}} />
+                  <LinearGradient colors={['#fff', 'transparent']} locations={[0.45, 0.95]} style={{flex: 1}} />
                 }
                 style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Image
-                  source={imageSets[mainIndex.image]}
-                  style={{width: windowWidth - 32 - 12, height: windowHeight / 2 - 12, borderRadius: 8}}
+                  source={imageSets[index.image]}
+                  style={{
+                    width: windowWidth - 32 - 12,
+                    height: windowHeight / 2,
+                  }}
                 />
               </MaskedView>
               <Text
@@ -181,7 +150,7 @@ const Home: React.FC = () => {
                   left: 0,
                   right: 0,
                   marginHorizontal: 16,
-                  marginBottom: 12,
+                  marginBottom: 16,
                 }}>
                 <Text
                   numberOfLines={5}
@@ -197,7 +166,7 @@ const Home: React.FC = () => {
                     shadowRadius: 6,
                     elevation: 4,
                   }}>
-                  {currentCopywriter}
+                  {currentCopywriter.withBrand}
                 </Text>
                 <View style={{height: 1, backgroundColor: 'rgba(255,255,255,0.7)', marginTop: 16}} />
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', marginTop: 8}}>
@@ -206,8 +175,23 @@ const Home: React.FC = () => {
                 </View>
               </View>
             </View>
-          </Animated.View>
-        </TapGestureHandler>
+          </TouchableRipple>
+
+          <TouchableRipple
+            borderless
+            style={{
+              borderBottomLeftRadius: 8,
+              borderBottomRightRadius: 8,
+              backgroundColor: '#ede0de',
+              width: '100%',
+              height: 48,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+            onPress={() => copyToClipboard(currentCopywriter.withBrand)}>
+            <Text style={{color: '#E1352F', fontWeight: 'bold'}}>拷 贝 文 案</Text>
+          </TouchableRipple>
+        </View>
       </ScrollView>
       <Button
         theme={{
@@ -217,8 +201,8 @@ const Home: React.FC = () => {
         mode="contained"
         style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
         labelStyle={{fontSize: 15, lineHeight: 32}}
-        onPress={() => copyToClipboard(currentCopywriter)}>
-        拷贝文案
+        onPress={() => refresh()}>
+        刷新文案
       </Button>
     </View>
   );

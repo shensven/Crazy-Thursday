@@ -6,13 +6,14 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {BlurView} from '@react-native-community/blur';
 import {Button, Text} from 'react-native-paper';
-import {imageSets, type MainIndex} from './Home';
+import {imageSets} from './Home';
+import type {Index} from './Home';
 import useClipboard from '../utils/useClipboard';
 
 type StackParamList = {
   Params: {
-    mainIndex: MainIndex;
-    currentCopywriter: string;
+    index: Index;
+    currentCopywriterWithBrand: string;
   };
 };
 type ScreenRouteProp = RouteProp<StackParamList, 'Params'>;
@@ -26,7 +27,7 @@ const Detail: React.FC = () => {
 
   const {copyToClipboard} = useClipboard();
 
-  const {mainIndex, currentCopywriter} = route.params;
+  const {index, currentCopywriterWithBrand} = route.params;
 
   useEffect(() => {
     navigation.setOptions({
@@ -38,7 +39,7 @@ const Detail: React.FC = () => {
           mode="contained"
           style={{marginRight: 8}}
           labelStyle={{fontSize: 12, fontWeight: 'bold'}}
-          onPress={() => copyToClipboard(currentCopywriter)}>
+          onPress={() => copyToClipboard(currentCopywriterWithBrand)}>
           拷贝文案
         </Button>
       ),
@@ -48,7 +49,7 @@ const Detail: React.FC = () => {
   return (
     <>
       <ScrollView scrollIndicatorInsets={{top: headerHeight}}>
-        <Image source={imageSets[mainIndex.image]} style={{width: windowWidth, height: windowHeight / 3}} />
+        <Image source={imageSets[index.image]} style={{width: windowWidth, height: windowHeight / 3}} />
         <View style={{paddingBottom: insets.bottom, marginTop: 16, flexGrow: 1}}>
           <Text
             style={{
@@ -65,7 +66,7 @@ const Detail: React.FC = () => {
               shadowRadius: 8,
               elevation: 2,
             }}>
-            {currentCopywriter}
+            {currentCopywriterWithBrand}
           </Text>
         </View>
       </ScrollView>

@@ -151,12 +151,10 @@ const Settings: React.FC = () => {
             ))}
           </View>
         ))}
-        <View style={{marginTop: 8, alignItems: 'center'}}>
+        <View style={{marginTop: 16, alignItems: 'center'}}>
           <Text style={{fontSize: 16, color: 'rgba(0,0,0,0.8)'}}>疯狂星期四</Text>
           <Text style={{fontSize: 10, color: 'rgba(0,0,0,0.5)', marginTop: 8}}>发给你的好友</Text>
           <Text style={{fontSize: 10, color: 'rgba(0,0,0,0.5)', marginTop: 2}}>让 TA 请你吃炸鸡</Text>
-          <Text style={{fontSize: 10, color: 'rgba(0,0,0,0.5)', marginTop: 16}}>Made with ❤️ in Kunming</Text>
-          <Text style={{fontSize: 10, color: 'rgba(0,0,0,0.5)', marginTop: 2}}>by SvenFE</Text>
         </View>
       </View>
     </ScrollView>

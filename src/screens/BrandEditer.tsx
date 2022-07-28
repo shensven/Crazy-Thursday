@@ -11,7 +11,7 @@ const BrandEditer: React.FC = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
 
-  const {brandKeywords, setBrandKeywords} = useBrandKeywords();
+  const {brandKeywords, updateBrandKeywords} = useBrandKeywords();
 
   const [form, setForm] = React.useState<BrandKeywords>({
     Chinese: brandKeywords.Chinese,
@@ -39,7 +39,7 @@ const BrandEditer: React.FC = () => {
           <Text style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 8}}>示例：</Text>
           <Text
             style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 4, textAlign: 'justify'}}>
-            我开始留头发，减重，换风格，开始往前冲，不好意思阿，这一次，{form.Chinese}疯狂星期四，我一定要吃。
+            我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，{form.Chinese}疯狂星期四，我一定要吃。
           </Text>
         </View>
         <View style={{marginTop: 40, marginBottom: 8}}>
@@ -75,7 +75,7 @@ const BrandEditer: React.FC = () => {
         style={{marginHorizontal: 16, marginTop: 32, marginBottom: 32 + insets.bottom}}
         labelStyle={{lineHeight: 24}}
         onPress={() =>
-          setBrandKeywords({
+          updateBrandKeywords({
             Chinese: form.Chinese,
             English: form.English,
           }).then(() => navigation.goBack())
