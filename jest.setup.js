@@ -15,7 +15,6 @@ jest.mock('react-native-reanimated', () => {
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 jest.mock('@react-native-clipboard/clipboard', () => mockClipboard);
 jest.mock('react-native-device-info', () => mockRNDeviceInfo);
-jest.mock('./src/screens/Init');
 jest.doMock('react-native-bootsplash', () => {
   return {
     hide: jest.fn().mockResolvedValueOnce(),

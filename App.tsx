@@ -17,6 +17,8 @@ import PrivacyPolicy from './src/screens/PrivacyPolicy';
 import Toast from './src/screens/components/Toast';
 
 export const storage = new MMKV();
+export const mmkvBrandKeywords = storage.getString('@brandKeywords');
+export const mmkvCopywriter = storage.getString('@copywriter');
 
 if (__DEV__) {
   initializeMMKVFlipper({default: storage});

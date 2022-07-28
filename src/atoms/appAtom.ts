@@ -1,5 +1,5 @@
 import {atom} from 'jotai';
-import {storage} from '../../App';
+import {mmkvBrandKeywords, mmkvCopywriter} from '../../App';
 
 export const atomStatusBarStyle = atom<'dark-content' | 'light-content'>('dark-content');
 export const atomHasToast = atom<boolean>(false);
@@ -12,9 +12,6 @@ export interface Copywriter {
   version: number;
   bundle: {text: string}[];
 }
-
-const mmkvBrandKeywords = storage.getString('@brandKeywords');
-const mmkvCopywriter = storage.getString('@copywriter');
 
 let initBrandKeywords: BrandKeywords | undefined;
 if (mmkvBrandKeywords) {
