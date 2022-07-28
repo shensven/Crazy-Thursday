@@ -7,7 +7,6 @@
     {
       "groupName": "dependencies",
       "matchFiles": ["package.json"],
-      "matchManagers": ["yarn"],
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
@@ -28,6 +27,7 @@
         "react-native-fade",
         "react-native-gesture-handler",
         "react-native-linear-gradient",
+        "react-native-mmkv",
         "react-native-paper",
         "react-native-reanimated",
         "react-native-safe-area-context",
@@ -38,11 +38,10 @@
     {
       "groupName": "devDependencies",
       "matchFiles": ["package.json"],
-      "matchManagers": ["yarn"],
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
-      "excludePackageNames": ["@types/lodash"]
+      "excludePackageNames": ["@types/lodash", "react-native-flipper", "react-native-mmkv-flipper-plugin"]
     }
   ]
 }
