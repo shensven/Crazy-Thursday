@@ -14,9 +14,9 @@
 
 发给你的好友，让 TA 请你吃炸鸡！
 
-|                       iOS Home                       |                       iOS Detail                       |
-| :--------------------------------------------------: | :----------------------------------------------------: |
-| ![Screenshot 1](src/assets/screenshots/ios-home.png) | ![Screenshot 2](src/assets/screenshots/ios-detail.png) |
+|                         首页                         |                          详情                          |                       设置｜                        |
+| :--------------------------------------------------: | :----------------------------------------------------: | :-------------------------------------------------: |
+| ![Screenshot 1](src/assets/screenshots/ios-home.png) | ![Screenshot 2](src/assets/screenshots/ios-detail.png) | ![Screenshot 2](src/assets/screenshots/ios-cog.png) |
 
 ## 📦 分发方式
 
@@ -114,6 +114,6 @@ yarn react-native generate-bootsplash src/assets/splash/bootsplash.png \
   --flavor=main
 ```
 
-## 许可证合规性
+## 📜 许可证合规性
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday?ref=badge_large)
