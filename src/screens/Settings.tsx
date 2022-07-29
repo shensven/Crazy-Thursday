@@ -82,12 +82,12 @@ const Settings: React.FC = () => {
           rightIcon: <IcRoundChevronRight size={20} color="rgba(0,0,0,0.8)" />,
           onPress: () => navigation.navigate('PrivacyPolicy'),
         },
-        {
-          label: '好评鼓励',
-          description: '',
-          rightIcon: <IcRoundOpenInNew size={16} color="rgba(0,0,0,0.8)" />,
-          onPress: () => {},
-        },
+        // {
+        //   label: '好评鼓励',
+        //   description: '',
+        //   rightIcon: <IcRoundOpenInNew size={16} color="rgba(0,0,0,0.8)" />,
+        //   onPress: () => {},
+        // },
         {
           label: '反馈意见',
           description: '',
@@ -101,8 +101,9 @@ const Settings: React.FC = () => {
       children: [
         {
           label: `${version} (${buildNumber})`,
-          description: '检查更新',
-          rightIcon: <IcRoundOpenInNew size={16} color="rgba(0,0,0,0.8)" />,
+          description: '',
+          // rightIcon: <IcRoundOpenInNew size={16} color="rgba(0,0,0,0.8)" />,
+          rightIcon: undefined,
           onPress: () => {},
         },
       ],
