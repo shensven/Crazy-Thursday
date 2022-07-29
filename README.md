@@ -14,7 +14,7 @@
 
 发给你的好友，让 TA 请你吃炸鸡！
 
-|                         首页                         |                          详情                          |                       设置｜                        |
+|                         首页                         |                          详情                          |                        设置                         |
 | :--------------------------------------------------: | :----------------------------------------------------: | :-------------------------------------------------: |
 | ![Screenshot 1](src/assets/screenshots/ios-home.png) | ![Screenshot 2](src/assets/screenshots/ios-detail.png) | ![Screenshot 2](src/assets/screenshots/ios-cog.png) |
 
