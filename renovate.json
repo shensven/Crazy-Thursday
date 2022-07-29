@@ -6,12 +6,10 @@
   "packageRules": [
     {
       "groupName": "dependencies",
-      "matchFiles": ["package.json"],
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
       "excludePackageNames": [
-        "@react-native-async-storage/async-storage",
         "@react-native-clipboard/clipboard",
         "@react-native-community/blur",
         "@react-native-masked-view/masked-view",
@@ -37,7 +35,6 @@
     },
     {
       "groupName": "devDependencies",
-      "matchFiles": ["package.json"],
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "enabled": false,
