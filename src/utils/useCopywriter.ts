@@ -9,7 +9,11 @@ const useCopywriter = () => {
 
   const updateCopywriter = async () => {
     try {
-      const resp = await axios.get<Copywriter>('https://crazy-thursday.shensven.com/latest.json');
+      const resp = await axios.get<Copywriter>('https://crazy-thursday.shensven.com/latest.json', {
+        params: {
+          timestamp: Date.now().toString(),
+        },
+      });
       if (resp.status === 200) {
         if (resp.data.version > copywriter.version) {
           setCopywriter(resp.data);
