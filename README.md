@@ -114,6 +114,18 @@ yarn react-native generate-bootsplash src/assets/splash/bootsplash.png \
   --flavor=main
 ```
 
+## ✍️ 贡献文案
+
+前往 [issues](https://github.com/shensven/Crazy-Thursday/issues/new) 页面发布你的贡献文案，【标题】和【正文】随意
+
+示例如下
+
+![how-to-contribute.png](src/assets/issues/how-to-contribute.png)
+
+## 👍 致谢
+
+- [Nthily/KFC-Crazy-Thursday](https://github.com/Nthily/KFC-Crazy-Thursday) - 主要文案来源
+
 ## 📜 许可证合规性
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fshensven%2FCrazy-Thursday?ref=badge_large)
