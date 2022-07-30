@@ -104,7 +104,7 @@ const Settings: React.FC = () => {
           description: '',
           // rightIcon: <IcRoundOpenInNew size={16} color="rgba(0,0,0,0.8)" />,
           rightIcon: undefined,
-          onPress: () => {},
+          onPress: undefined,
         },
       ],
     },
