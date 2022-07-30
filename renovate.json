@@ -30,15 +30,11 @@
         "react-native-reanimated",
         "react-native-safe-area-context",
         "react-native-screens",
-        "react-native-svg"
+        "react-native-svg",
+        "@types/lodash",
+        "react-native-flipper",
+        "react-native-mmkv-flipper-plugin"
       ]
-    },
-    {
-      "groupName": "devDependencies",
-      "matchDepTypes": ["devDependencies"],
-      "matchUpdateTypes": ["patch", "minor"],
-      "enabled": false,
-      "excludePackageNames": ["@types/lodash", "react-native-flipper", "react-native-mmkv-flipper-plugin"]
     }
   ]
 }
