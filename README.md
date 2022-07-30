@@ -26,7 +26,8 @@
 
 ### Android 版本
 
-- Android 正式版尚未发布，不过你可以通过 [GitHub Release](https://github.com/shensven/Crazy-Thursday/releases) 下载 apk 安装包进行先行体验
+- <a href="https://play.google.com/store/apps/details?id=com.shensven.crazythursday"><img align='center' src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-cn_badge_web_generic.png" width="160px"/></a>
+- 通过 [GitHub Release](https://github.com/shensven/Crazy-Thursday/releases) 下载 apk 安装包
 
 ## 🔨 编译
 
