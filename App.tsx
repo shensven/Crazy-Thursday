@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-// import {useColorScheme} from 'react-native';
 import {Provider as PaperProvider} from 'react-native-paper';
 import {MMKV} from 'react-native-mmkv';
 import {StatusBar} from 'react-native-bars';
@@ -19,11 +18,11 @@ if (__DEV__) {
 }
 
 const App: React.FC = () => {
-  const {getPaperAppearance, getStatusBarStyle} = useDesignSystem();
+  const {statusBarStyle, getPaperAppearance} = useDesignSystem();
 
   return (
     <PaperProvider theme={getPaperAppearance()}>
-      <StatusBar animated={true} barStyle={getStatusBarStyle()} />
+      <StatusBar animated={true} barStyle={statusBarStyle} />
       <MainStack />
       <Toast />
     </PaperProvider>

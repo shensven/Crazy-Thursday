@@ -1,7 +1,9 @@
 import {atom} from 'jotai';
 import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywriter} from '../../App';
 
-export const atomStatusBarStyle = atom<'dark-content' | 'light-content'>('dark-content');
+export type StatusBarStyle = 'light-content' | 'dark-content';
+
+export const atomStatusBarStyle = atom<StatusBarStyle>('dark-content');
 export const atomHasToast = atom<boolean>(false);
 
 // -----------------------------------------------------------------------------

@@ -3,8 +3,6 @@ import RNBootSplash from 'react-native-bootsplash';
 import {createStackNavigator, HeaderStyleInterpolators, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {useTheme} from 'react-native-paper';
-import {useAtom} from 'jotai';
-import {atomStatusBarStyle} from './atoms/appAtom';
 import useDesignSystem from './utils/useDesignSystem';
 import Home from './screens/Home';
 import HomeHeaderRight from './screens/components/HomeHeaderRight';
@@ -16,13 +14,16 @@ import PrivacyPolicy from './screens/PrivacyPolicy';
 
 const MainStack: React.FC = () => {
   const Stack = createStackNavigator();
-  const [, setStatusBarStyle] = useAtom(atomStatusBarStyle);
 
-  const {getNavigationAppearance} = useDesignSystem();
   const {colors} = useTheme();
+  const {getNavigationAppearance, updateStatusBarStyle} = useDesignSystem();
 
   return (
-    <NavigationContainer theme={getNavigationAppearance()} onReady={() => RNBootSplash.hide({fade: true})}>
+    <NavigationContainer
+      theme={getNavigationAppearance()}
+      onReady={() => {
+        RNBootSplash.hide({fade: true});
+      }}>
       <Stack.Navigator
         screenOptions={{
           headerTintColor: colors.primary,
@@ -55,9 +56,6 @@ const MainStack: React.FC = () => {
             },
             headerRight: () => <HomeHeaderRight />,
           }}
-          listeners={{
-            focus: () => setStatusBarStyle('dark-content'),
-          }}
         />
         <Stack.Screen
           name="Detail"
@@ -69,7 +67,8 @@ const MainStack: React.FC = () => {
             ...TransitionPresets.ModalPresentationIOS,
           }}
           listeners={{
-            focus: () => setStatusBarStyle('light-content'),
+            focus: () => updateStatusBarStyle('light-content'),
+            beforeRemove: () => updateStatusBarStyle(),
           }}
         />
         <Stack.Screen

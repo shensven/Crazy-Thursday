@@ -2,9 +2,10 @@ import {useColorScheme} from 'react-native';
 import {DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme} from 'react-native-paper';
 import {DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme} from '@react-navigation/native';
 import {useAtom} from 'jotai';
-import {atomAppearance, atomStatusBarStyle} from '../atoms/appAtom';
+import {atomAppearance, atomStatusBarStyle, StatusBarStyle} from '../atoms/appAtom';
 import type {Appearance} from '../atoms/appAtom';
 import {storage} from '../../App';
+import {useEffect} from 'react';
 
 declare global {
   namespace ReactNativePaper {
@@ -76,18 +77,34 @@ const navigationDarkTheme = {
 };
 
 const useDesignSystem = () => {
-  const scheme = useColorScheme();
-  const [, setStatusBarStyle] = useAtom(atomStatusBarStyle);
+  const colorScheme = useColorScheme();
+  const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
   const [appearance, setAppearance] = useAtom(atomAppearance);
 
-  const getStatusBarStyle = () => {
-    if (appearance === 'light') {
-      return 'dark-content';
-    } else if (appearance === 'dark') {
-      return 'light-content';
+  const updateStatusBarStyle = (_statusBarStyle?: StatusBarStyle) => {
+    if (_statusBarStyle && ['light-content', 'dark-content'].includes(_statusBarStyle)) {
+      return setStatusBarStyle(_statusBarStyle);
     } else {
-      return scheme === 'dark' ? 'light-content' : 'dark-content';
+      if (appearance === 'light') {
+        setStatusBarStyle('dark-content');
+      } else if (appearance === 'dark') {
+        setStatusBarStyle('light-content');
+      } else {
+        return colorScheme === 'dark' ? setStatusBarStyle('light-content') : setStatusBarStyle('dark-content');
+      }
     }
+  };
+
+  const updateAppearance = (_appearance: Appearance) => {
+    if (_appearance === 'light') {
+      setStatusBarStyle('dark-content');
+    } else if (_appearance === 'dark') {
+      setStatusBarStyle('light-content');
+    } else {
+      setStatusBarStyle(colorScheme === 'dark' ? 'light-content' : 'dark-content');
+    }
+    setAppearance(_appearance);
+    storage.set('@appearance', JSON.stringify(_appearance));
   };
 
   const getPaperAppearance = () => {
@@ -96,7 +113,7 @@ const useDesignSystem = () => {
     } else if (appearance === 'dark') {
       return paperDarkTheme;
     } else {
-      return scheme === 'dark' ? paperDarkTheme : paperLightTheme;
+      return colorScheme === 'dark' ? paperDarkTheme : paperLightTheme;
     }
   };
 
@@ -106,25 +123,22 @@ const useDesignSystem = () => {
     } else if (appearance === 'dark') {
       return navigationDarkTheme;
     } else {
-      return scheme === 'dark' ? navigationDarkTheme : navigationLightTheme;
+      return colorScheme === 'dark' ? navigationDarkTheme : navigationLightTheme;
     }
   };
 
-  const updateAppearance = (prop: Appearance) => {
-    setStatusBarStyle(() => {
-      if (appearance === 'light') {
-        return 'dark-content';
-      } else if (appearance === 'dark') {
-        return 'light-content';
-      } else {
-        return scheme === 'dark' ? 'light-content' : 'dark-content';
-      }
-    });
-    setAppearance(prop);
-    storage.set('@appearance', JSON.stringify(prop));
-  };
+  useEffect(() => {
+    updateStatusBarStyle();
+  }, [colorScheme]);
 
-  return {appearance, updateAppearance, getPaperAppearance, getNavigationAppearance, getStatusBarStyle};
+  return {
+    statusBarStyle,
+    appearance,
+    getPaperAppearance,
+    getNavigationAppearance,
+    updateAppearance,
+    updateStatusBarStyle,
+  };
 };
 
 export default useDesignSystem;

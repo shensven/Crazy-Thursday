@@ -21,12 +21,14 @@ type ScreenRouteProp = RouteProp<StackParamList, 'Params'>;
 const Detail: React.FC = () => {
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const headerHeight = useHeaderHeight();
+
+  const {colors} = useTheme();
+
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const route = useRoute<ScreenRouteProp>();
 
   const {copyToClipboard} = useClipboard();
-  const {colors} = useTheme();
 
   const {index, currentCopywriterWithBrand} = route.params;
 
