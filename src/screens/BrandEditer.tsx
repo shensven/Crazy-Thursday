@@ -3,13 +3,15 @@ import {View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
-import {Button, Text, TextInput} from 'react-native-paper';
+import {Button, Text, TextInput, useTheme} from 'react-native-paper';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import {type BrandKeywords} from '../atoms/appAtom';
+import color from 'color';
 
 const BrandEditer: React.FC = () => {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
+  const {colors} = useTheme();
 
   const {brandKeywords, updateBrandKeywords} = useBrandKeywords();
 
@@ -20,13 +22,9 @@ const BrandEditer: React.FC = () => {
 
   return (
     <ScrollView>
-      <View style={{padding: 16, backgroundColor: '#fff'}}>
+      <View style={{padding: 16, backgroundColor: color(colors.secondary).alpha(0.05).toString()}}>
         <View style={{marginTop: 16}}>
           <TextInput
-            theme={{
-              roundness: 12,
-              colors: {primary: '#E1352F'},
-            }}
             dense
             mode="outlined"
             label="中文关键字"
@@ -36,18 +34,18 @@ const BrandEditer: React.FC = () => {
               setForm({...form, Chinese: text});
             }}
           />
-          <Text style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 8}}>示例：</Text>
           <Text
-            style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 4, textAlign: 'justify'}}>
-            我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，{form.Chinese}疯狂星期四，我一定要吃。
+            style={{
+              fontSize: 12,
+              color: color(colors.secondary).alpha(0.8).toString(),
+              margin: 12,
+              textAlign: 'justify',
+            }}>
+            示例：我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，{form.Chinese}疯狂星期四，我一定要吃。
           </Text>
         </View>
-        <View style={{marginTop: 40, marginBottom: 8}}>
+        <View style={{marginTop: 24, marginBottom: 8}}>
           <TextInput
-            theme={{
-              roundness: 12,
-              colors: {primary: '#E1352F'},
-            }}
             dense
             mode="outlined"
             label="英文关键字"
@@ -57,19 +55,20 @@ const BrandEditer: React.FC = () => {
               setForm({...form, English: text});
             }}
           />
-          <Text style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 8}}>示例：</Text>
+
           <Text
-            style={{fontSize: 12, color: 'rgba(0,0,0,0.5)', marginHorizontal: 8, marginTop: 4, textAlign: 'justify'}}>
-            昨晚努力写的代码，今早运行起来一直报错，找不到什么原因，不知道怎么解决，求求大佬帮我看下，以下是报错信息：
+            style={{
+              fontSize: 12,
+              color: color(colors.secondary).alpha(0.8).toString(),
+              margin: 12,
+              textAlign: 'justify',
+            }}>
+            示例：昨晚努力写的代码，今早运行起来一直报错，找不到什么原因，不知道怎么解决，求求大佬帮我看下，以下是报错信息：
             java.io.IOException: {form.English} Crazy Thursday need $50.
           </Text>
         </View>
       </View>
       <Button
-        theme={{
-          roundness: 12,
-          colors: {primary: '#E1352F'},
-        }}
         mode="contained"
         disabled={brandKeywords.Chinese === form.Chinese && brandKeywords.English === form.English}
         style={{marginHorizontal: 16, marginTop: 32, marginBottom: 32 + insets.bottom}}

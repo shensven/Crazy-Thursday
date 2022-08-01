@@ -1,18 +1,27 @@
 import {atom} from 'jotai';
-import {mmkvBrandKeywords, mmkvCopywriter} from '../../App';
+import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywriter} from '../../App';
 
 export const atomStatusBarStyle = atom<'dark-content' | 'light-content'>('dark-content');
 export const atomHasToast = atom<boolean>(false);
+
+// -----------------------------------------------------------------------------
+
+export type Appearance = 'light' | 'dark' | 'followSystem';
+
+let initAppearance: Appearance | undefined;
+if (mmkvAppearance) {
+  initAppearance = JSON.parse(mmkvAppearance);
+} else {
+  initAppearance = 'followSystem';
+}
+export const atomAppearance = atom<Appearance>(initAppearance!);
+
+// -----------------------------------------------------------------------------
 
 export interface BrandKeywords {
   Chinese: string;
   English: string;
 }
-export interface Copywriter {
-  version: number;
-  bundle: {text: string}[];
-}
-
 let initBrandKeywords: BrandKeywords | undefined;
 if (mmkvBrandKeywords) {
   initBrandKeywords = JSON.parse(mmkvBrandKeywords);
@@ -21,6 +30,12 @@ if (mmkvBrandKeywords) {
 }
 export const atomBrandKeywords = atom<BrandKeywords>(initBrandKeywords!);
 
+// -----------------------------------------------------------------------------
+
+export interface Copywriter {
+  version: number;
+  bundle: {text: string}[];
+}
 let initCopywriter: Copywriter | undefined;
 if (mmkvCopywriter) {
   initCopywriter = JSON.parse(mmkvCopywriter);

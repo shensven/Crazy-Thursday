@@ -5,7 +5,7 @@ import {useHeaderHeight} from '@react-navigation/elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {BlurView} from '@react-native-community/blur';
-import {Button, Text} from 'react-native-paper';
+import {Button, Text, useTheme} from 'react-native-paper';
 import {imageSets} from './Home';
 import type {Index} from './Home';
 import useClipboard from '../utils/useClipboard';
@@ -26,6 +26,7 @@ const Detail: React.FC = () => {
   const route = useRoute<ScreenRouteProp>();
 
   const {copyToClipboard} = useClipboard();
+  const {colors} = useTheme();
 
   const {index, currentCopywriterWithBrand} = route.params;
 
@@ -34,7 +35,7 @@ const Detail: React.FC = () => {
       headerRight: () => (
         <Button
           theme={{
-            colors: {primary: '#E1352F'},
+            roundness: 6,
           }}
           mode="contained"
           style={{marginRight: 8}}
@@ -53,18 +54,13 @@ const Detail: React.FC = () => {
         <View style={{paddingBottom: insets.bottom, marginTop: 16, flexGrow: 1}}>
           <Text
             style={{
-              color: '#201a19',
+              color: colors.onBackground,
               fontSize: 18,
               fontWeight: 'bold',
               lineHeight: 18 * 2,
-              textAlign: 'justify',
+              textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
               marginHorizontal: 16,
               marginVertical: 8,
-              shadowColor: '#000',
-              shadowOpacity: 0.2,
-              shadowOffset: {width: 0, height: 0},
-              shadowRadius: 8,
-              elevation: 2,
             }}>
             {currentCopywriterWithBrand}
           </Text>
