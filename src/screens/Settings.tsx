@@ -10,7 +10,7 @@ import color from 'color';
 import IcRoundSync from './assets/icons/IcRoundSync';
 import IcRoundChevronRight from './assets/icons/IcRoundChevronRight';
 import IcRoundOpenInNew from './assets/icons/IcRoundOpenInNew';
-import useCopywriter from '../utils/useCopywriter';
+import useCopywritings from '../utils/useCopywritings';
 
 const version = DeviceInfo.getVersion();
 const buildNumber = DeviceInfo.getBuildNumber();
@@ -27,9 +27,9 @@ const Settings: React.FC = () => {
   const navigation = useNavigation<ScreenNavigationProp>();
 
   const {colors} = useTheme();
-  const {copywriter, updateCopywriter} = useCopywriter();
+  const {copywritings, updateCopywritings} = useCopywritings();
 
-  const copywriterVersion = copywriter.version.toString();
+  const copywriterVersion = copywritings.version.toString();
 
   const settings = [
     {
@@ -49,7 +49,7 @@ const Settings: React.FC = () => {
             6,
           )}.${copywriterVersion.substring(6, 8)}.${copywriterVersion.substring(8, 10)}`,
           rightIcon: <IcRoundSync size={20} color={colors.onSurfaceVariant} />,
-          onPress: () => updateCopywriter(),
+          onPress: () => updateCopywritings(),
         },
       ],
     },

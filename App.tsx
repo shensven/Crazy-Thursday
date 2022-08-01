@@ -11,7 +11,7 @@ import Toast from './src/screens/components/Toast';
 export const storage = new MMKV();
 export const mmkvAppearance = storage.getString('@appearance');
 export const mmkvBrandKeywords = storage.getString('@brandKeywords');
-export const mmkvCopywriter = storage.getString('@copywriter');
+export const mmkvCopywritings = storage.getString('@copywritings');
 
 if (__DEV__) {
   initializeMMKVFlipper({default: storage});

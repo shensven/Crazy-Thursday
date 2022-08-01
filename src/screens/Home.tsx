@@ -10,7 +10,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {useUpdateEffect} from 'ahooks';
 import {random} from 'lodash';
 import color from 'color';
-import useCopywriter from '../utils/useCopywriter';
+import useCopywritings from '../utils/useCopywritings';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
 
@@ -50,12 +50,12 @@ const Home: React.FC = () => {
 
   const {copyToClipboard} = useClipboard();
 
-  const {copywriter, updateCopywriter} = useCopywriter();
+  const {copywritings, updateCopywritings} = useCopywritings();
   const {brandKeywords} = useBrandKeywords();
 
   const [index, setIndex] = useState<Index>({
     image: random(0, 9),
-    text: copywriter.bundle.length > 1 ? random(0, copywriter.bundle.length - 1) : 0,
+    text: copywritings.bundle.length > 1 ? random(0, copywritings.bundle.length - 1) : 0,
   });
 
   const [currentCopywriter, setCurrentCopywriter] = useState({
@@ -66,14 +66,14 @@ const Home: React.FC = () => {
   const refresh = () => {
     setIndex({
       image: random(0, 9),
-      text: random(0, copywriter.bundle.length - 1),
+      text: random(0, copywritings.bundle.length - 1),
     });
   };
 
   useEffect(() => {
     setCurrentCopywriter({
-      origin: copywriter.bundle[index.text].text,
-      withBrand: copywriter.bundle[index.text].text
+      origin: copywritings.bundle[index.text].text,
+      withBrand: copywritings.bundle[index.text].text
         .replace(/\${brand-zh-CN}/g, brandKeywords.Chinese)
         .replace(/\${brand-en-US}/g, brandKeywords.English),
     });
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
   }, [brandKeywords]);
 
   useEffect(() => {
-    updateCopywriter();
+    updateCopywritings();
   }, []);
 
   return (

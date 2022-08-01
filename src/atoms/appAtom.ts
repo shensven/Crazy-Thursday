@@ -1,5 +1,5 @@
 import {atom} from 'jotai';
-import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywriter} from '../../App';
+import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings} from '../../App';
 
 export type StatusBarStyle = 'light-content' | 'dark-content';
 
@@ -38,15 +38,15 @@ export interface Copywriter {
   version: number;
   bundle: {text: string}[];
 }
-let initCopywriter: Copywriter | undefined;
-if (mmkvCopywriter) {
-  initCopywriter = JSON.parse(mmkvCopywriter);
+let initCopywritings: Copywriter | undefined;
+if (mmkvCopywritings) {
+  initCopywritings = JSON.parse(mmkvCopywritings);
 } else {
-  initCopywriter = {
+  initCopywritings = {
     version: 2022000000,
     bundle: [
       {text: '我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，${brand-zh-CN}疯狂星期四，我一定要吃。'},
     ],
   };
 }
-export const atomCopywriter = atom<Copywriter>(initCopywriter!);
+export const atomCopywritings = atom<Copywriter>(initCopywritings!);
