@@ -17,6 +17,7 @@
         "@react-navigation/native",
         "@react-navigation/stack",
         "axios",
+        "color",
         "jotai",
         "lodash",
         "react-native-bars",
@@ -31,6 +32,7 @@
         "react-native-safe-area-context",
         "react-native-screens",
         "react-native-svg",
+        "@types/color",
         "@types/lodash",
         "react-native-flipper",
         "react-native-mmkv-flipper-plugin"
