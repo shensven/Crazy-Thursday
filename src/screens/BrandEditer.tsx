@@ -1,16 +1,18 @@
 import React from 'react';
 import {View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import {Button, Text, TextInput, useTheme} from 'react-native-paper';
+import color from 'color';
+import BlurScrollView from './components/BlurScrollView';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import {type BrandKeywords} from '../atoms/appAtom';
-import color from 'color';
 
 const BrandEditer: React.FC = () => {
   const insets = useSafeAreaInsets();
+
   const navigation = useNavigation();
+
   const {colors} = useTheme();
 
   const {brandKeywords, updateBrandKeywords} = useBrandKeywords();
@@ -21,8 +23,13 @@ const BrandEditer: React.FC = () => {
   });
 
   return (
-    <ScrollView>
-      <View style={{padding: 16, backgroundColor: color(colors.secondary).alpha(0.05).toString()}}>
+    <BlurScrollView>
+      <View
+        style={{
+          paddingHorizontal: 16,
+          paddingTop: 16,
+          backgroundColor: color(colors.secondary).alpha(0.05).toString(),
+        }}>
         <View style={{marginTop: 16}}>
           <TextInput
             dense
@@ -71,7 +78,7 @@ const BrandEditer: React.FC = () => {
       <Button
         mode="contained"
         disabled={brandKeywords.Chinese === form.Chinese && brandKeywords.English === form.English}
-        style={{marginHorizontal: 16, marginTop: 32, marginBottom: 32 + insets.bottom}}
+        style={{marginHorizontal: 16, marginTop: 40, marginBottom: 32 + insets.bottom}}
         labelStyle={{lineHeight: 24}}
         onPress={() =>
           updateBrandKeywords({
@@ -81,7 +88,7 @@ const BrandEditer: React.FC = () => {
         }>
         保 存
       </Button>
-    </ScrollView>
+    </BlurScrollView>
   );
 };
 

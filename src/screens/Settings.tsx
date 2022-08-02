@@ -2,7 +2,6 @@ import React from 'react';
 import {Linking, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
-import {ScrollView} from 'react-native-gesture-handler';
 import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import DeviceInfo from 'react-native-device-info';
@@ -11,6 +10,7 @@ import IcRoundSync from './assets/icons/IcRoundSync';
 import IcRoundChevronRight from './assets/icons/IcRoundChevronRight';
 import IcRoundOpenInNew from './assets/icons/IcRoundOpenInNew';
 import useCopywritings from '../utils/useCopywritings';
+import BlurScrollView from './components/BlurScrollView';
 
 const version = DeviceInfo.getVersion();
 const buildNumber = DeviceInfo.getBuildNumber();
@@ -24,9 +24,11 @@ type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
 const Settings: React.FC = () => {
   const insets = useSafeAreaInsets();
+
   const navigation = useNavigation<ScreenNavigationProp>();
 
   const {colors} = useTheme();
+
   const {copywritings, updateCopywritings} = useCopywritings();
 
   const copywriterVersion = copywritings.version.toString();
@@ -119,14 +121,12 @@ const Settings: React.FC = () => {
   ];
 
   return (
-    <ScrollView>
+    <BlurScrollView>
       <View
         style={{
-          flex: 1,
-          justifyContent: 'space-between',
           marginHorizontal: 16,
           marginTop: 16,
-          marginBottom: 8 + insets.bottom,
+          marginBottom: 16 + insets.bottom,
         }}>
         {settings.map(group => (
           <View key={group.title} style={{marginBottom: 16}}>
@@ -174,7 +174,7 @@ const Settings: React.FC = () => {
           </Text>
         </View>
       </View>
-    </ScrollView>
+    </BlurScrollView>
   );
 };
 

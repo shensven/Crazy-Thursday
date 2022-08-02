@@ -70,7 +70,7 @@ const Detail: React.FC = () => {
       </ScrollView>
       {Platform.OS === 'ios' && (
         <BlurView
-          blurType="regular"
+          blurType="thinMaterialDark"
           blurAmount={16}
           style={{width: '100%', height: headerHeight, position: 'absolute', top: 0}}
         />

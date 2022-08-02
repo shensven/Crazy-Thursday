@@ -11,6 +11,7 @@ import Settings from './screens/Settings';
 import BrandEditer from './screens/BrandEditer';
 import Appearance from './screens/Appearance';
 import PrivacyPolicy from './screens/PrivacyPolicy';
+import {Platform} from 'react-native';
 
 const MainStack: React.FC = () => {
   const Stack = createStackNavigator();
@@ -39,6 +40,7 @@ const MainStack: React.FC = () => {
           cardStyle: {
             backgroundColor: colors.background,
           },
+          headerTransparent: Platform.OS === 'ios' ? true : false,
           gestureEnabled: true,
           ...TransitionPresets.SlideFromRightIOS,
           headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
@@ -54,6 +56,7 @@ const MainStack: React.FC = () => {
               fontSize: 18,
               fontWeight: 'bold',
             },
+
             headerRight: () => <HomeHeaderRight />,
           }}
         />

@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {Image, Platform, useWindowDimensions, View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import {Button, Text, TouchableRipple, useTheme} from 'react-native-paper';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
+import {BlurView} from '@react-native-community/blur';
 import {useUpdateEffect} from 'ahooks';
 import {random} from 'lodash';
 import color from 'color';
 import useCopywritings from '../utils/useCopywritings';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
+import useDesignSystem from '../utils/useDesignSystem';
+import BlurScrollView from './components/BlurScrollView';
 
 export const imageSets = [
   require('./assets/images/0.jpg'),
@@ -44,9 +46,9 @@ const Home: React.FC = () => {
   const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
-  const {colors} = useTheme();
-
   const navigation = useNavigation<ScreenNavigationProp>();
+  const {colors} = useTheme();
+  const {headerBlurType} = useDesignSystem();
 
   const {copyToClipboard} = useClipboard();
 
@@ -94,7 +96,7 @@ const Home: React.FC = () => {
 
   return (
     <View style={{flex: 1}}>
-      <ScrollView>
+      <BlurScrollView>
         <View
           style={{
             margin: 16,
@@ -195,14 +197,27 @@ const Home: React.FC = () => {
             <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 15}}>拷贝文案</Text>
           </TouchableRipple>
         </View>
-      </ScrollView>
-      <Button
-        mode="contained"
-        style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
-        labelStyle={{fontSize: 15, fontWeight: 'bold', lineHeight: 32}}
-        onPress={() => refresh()}>
-        刷新文案
-      </Button>
+      </BlurScrollView>
+      {Platform.OS === 'ios' && (
+        <BlurView blurType={headerBlurType} blurAmount={16} style={{width: '100%', position: 'absolute', bottom: 0}}>
+          <Button
+            mode="contained"
+            style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
+            labelStyle={{fontSize: 15, fontWeight: 'bold', lineHeight: 32}}
+            onPress={() => refresh()}>
+            刷新文案
+          </Button>
+        </BlurView>
+      )}
+      {Platform.OS === 'android' && (
+        <Button
+          mode="contained"
+          style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
+          labelStyle={{fontSize: 15, fontWeight: 'bold', lineHeight: 32}}
+          onPress={() => refresh()}>
+          刷新文案
+        </Button>
+      )}
     </View>
   );
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import color from 'color';
 import IcRoundCheck from './assets/icons/IcRoundCheck';
 import useDesignSystem from '../utils/useDesignSystem';
+import BlurScrollView from './components/BlurScrollView';
 
 const Appearance: React.FC = () => {
   const insets = useSafeAreaInsets();
@@ -35,15 +35,8 @@ const Appearance: React.FC = () => {
   ];
 
   return (
-    <ScrollView>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-          marginHorizontal: 16,
-          marginTop: 16,
-          marginBottom: 8 + insets.bottom,
-        }}>
+    <BlurScrollView>
+      <View style={{marginHorizontal: 16, marginTop: 16, marginBottom: 16 + insets.bottom}}>
         {appearances.map((item, index) => (
           <TouchableRipple
             key={item.label}
@@ -67,7 +60,7 @@ const Appearance: React.FC = () => {
           </TouchableRipple>
         ))}
       </View>
-    </ScrollView>
+    </BlurScrollView>
   );
 };
 

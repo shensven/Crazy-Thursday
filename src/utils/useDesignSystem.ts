@@ -2,7 +2,7 @@ import {useColorScheme} from 'react-native';
 import {DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme} from 'react-native-paper';
 import {DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme} from '@react-navigation/native';
 import {useAtom} from 'jotai';
-import {atomAppearance, atomStatusBarStyle, StatusBarStyle} from '../atoms/appAtom';
+import {atomAppearance, atomHeaderBlurType, atomStatusBarStyle, HeaderBlurType, StatusBarStyle} from '../atoms/appAtom';
 import type {Appearance} from '../atoms/appAtom';
 import {storage} from '../../App';
 import {useEffect} from 'react';
@@ -79,29 +79,45 @@ const navigationDarkTheme = {
 const useDesignSystem = () => {
   const colorScheme = useColorScheme();
   const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
+  const [headerBlurType, setHeaderBlurType] = useAtom(atomHeaderBlurType);
   const [appearance, setAppearance] = useAtom(atomAppearance);
 
   const updateStatusBarStyle = (_statusBarStyle?: StatusBarStyle) => {
     if (_statusBarStyle && ['light-content', 'dark-content'].includes(_statusBarStyle)) {
-      return setStatusBarStyle(_statusBarStyle);
+      setStatusBarStyle(_statusBarStyle);
     } else {
       if (appearance === 'light') {
         setStatusBarStyle('dark-content');
       } else if (appearance === 'dark') {
         setStatusBarStyle('light-content');
       } else {
-        return colorScheme === 'dark' ? setStatusBarStyle('light-content') : setStatusBarStyle('dark-content');
+        setStatusBarStyle(colorScheme === 'dark' ? 'light-content' : 'dark-content');
+      }
+    }
+  };
+
+  const updateHeaderBlurType = (_headerBlurType?: HeaderBlurType) => {
+    if (_headerBlurType && ['light', 'dark'].includes(_headerBlurType)) {
+      setHeaderBlurType(_headerBlurType);
+    } else {
+      if (appearance === 'followSystem') {
+        setHeaderBlurType(colorScheme === 'dark' ? 'dark' : 'light');
+      } else {
+        setHeaderBlurType(appearance);
       }
     }
   };
 
   const updateAppearance = (_appearance: Appearance) => {
     if (_appearance === 'light') {
-      setStatusBarStyle('dark-content');
+      updateStatusBarStyle('dark-content');
+      updateHeaderBlurType('light');
     } else if (_appearance === 'dark') {
-      setStatusBarStyle('light-content');
+      updateStatusBarStyle('light-content');
+      updateHeaderBlurType('dark');
     } else {
-      setStatusBarStyle(colorScheme === 'dark' ? 'light-content' : 'dark-content');
+      updateStatusBarStyle(colorScheme === 'dark' ? 'light-content' : 'dark-content');
+      updateHeaderBlurType(colorScheme === 'dark' ? 'dark' : 'light');
     }
     setAppearance(_appearance);
     storage.set('@appearance', JSON.stringify(_appearance));
@@ -129,10 +145,12 @@ const useDesignSystem = () => {
 
   useEffect(() => {
     updateStatusBarStyle();
+    updateHeaderBlurType();
   }, [colorScheme]);
 
   return {
     statusBarStyle,
+    headerBlurType,
     appearance,
     getPaperAppearance,
     getNavigationAppearance,
