@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Image, Platform, useWindowDimensions, View} from 'react-native';
+import {Dimensions, Image, Platform, View} from 'react-native';
 import {Button, Text, TouchableRipple, useTheme} from 'react-native-paper';
 import MaskedView from '@react-native-masked-view/masked-view';
 import LinearGradient from 'react-native-linear-gradient';
@@ -15,6 +15,9 @@ import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
 import useDesignSystem from '../utils/useDesignSystem';
 import BlurScrollView from './components/BlurScrollView';
+
+const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
 
 export const imageSets = [
   require('./assets/images/0.jpg'),
@@ -43,7 +46,6 @@ type StackParamList = {
 type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
 const Home: React.FC = () => {
-  const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
   const navigation = useNavigation<ScreenNavigationProp>();
@@ -126,8 +128,8 @@ const Home: React.FC = () => {
                 <Image
                   source={imageSets[index.image]}
                   style={{
-                    width: windowWidth - 32 - 12,
-                    height: windowHeight / 2,
+                    width: screenWidth - 32 - 12,
+                    height: screenHeight / 2 - 48,
                   }}
                 />
               </MaskedView>
