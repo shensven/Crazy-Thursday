@@ -17,7 +17,7 @@ const useCopywritings = () => {
       if (resp.status === 200) {
         if (resp.data.version > copywritings.version) {
           setCopywritings(resp.data);
-          storage.set('@copywriter', JSON.stringify(resp.data));
+          storage.set('@copywritings', JSON.stringify(resp.data));
         }
         return Promise.resolve('200');
       }
