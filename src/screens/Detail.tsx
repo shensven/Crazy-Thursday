@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, useWindowDimensions, Platform} from 'react-native';
+import {View, Image, Platform, Dimensions} from 'react-native';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -26,8 +26,10 @@ type ScreenRouteProp = RouteProp<StackParamList, 'Params'>;
 
 const majarSystemVersion = Platform.OS === 'ios' ? Number(DeviceInfo.getSystemVersion().split('.')[0]) : 0;
 
+const screenWidth = Dimensions.get('screen').width;
+const screenHeight = Dimensions.get('screen').height;
+
 const Detail: React.FC = () => {
-  const {width: windowWidth, height: windowHeight} = useWindowDimensions();
   const headerHeight = useHeaderHeight();
 
   const {colors} = useTheme();
@@ -71,7 +73,7 @@ const Detail: React.FC = () => {
   return (
     <View style={{flex: 1}}>
       <ScrollView scrollIndicatorInsets={{top: headerHeight}}>
-        <Image source={imageSets[index.image]} style={{width: windowWidth, height: windowHeight / 3}} />
+        <Image source={imageSets[index.image]} style={{width: screenWidth, height: screenHeight / 3 + headerHeight}} />
         <View style={{position: 'relative'}}>
           <Fade
             visible={hasTooltip}
