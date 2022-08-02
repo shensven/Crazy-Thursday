@@ -3,24 +3,25 @@ import {Text} from 'react-native-paper';
 import Fade from 'react-native-fade';
 import {useAtom} from 'jotai';
 import color from 'color';
-import {atomHasToast} from '../../atoms/appAtom';
+import {atomHasToast, atomToastMsg} from '../../atoms/appAtom';
 
 const Toast: React.FC = () => {
   const [hasToast] = useAtom(atomHasToast);
+  const [toastMsg] = useAtom(atomToastMsg);
 
   return (
     <Fade
       visible={hasToast}
       duration={200}
+      direction="up"
       style={{
-        backgroundColor: '#fff',
-        width: 144,
+        backgroundColor: toastMsg ? '#fff' : 'transparent',
         height: 40,
+        paddingHorizontal: 16,
         borderRadius: 20,
         position: 'absolute',
-        top: '75%',
+        bottom: '20%',
         alignSelf: 'center',
-        alignItems: 'center',
         justifyContent: 'center',
         shadowColor: '#000',
         shadowOpacity: 0.1,
@@ -28,7 +29,9 @@ const Toast: React.FC = () => {
         shadowRadius: 16,
         elevation: 8,
       }}>
-      <Text style={{color: color('#000').alpha(0.8).toString(), fontSize: 13}}>已拷贝到剪贴板 🎉</Text>
+      <Text style={{color: color('#000').alpha(0.8).toString(), fontSize: 13}}>
+        {toastMsg} {toastMsg && '🎉'}
+      </Text>
     </Fade>
   );
 };

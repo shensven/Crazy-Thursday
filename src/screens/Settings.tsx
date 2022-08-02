@@ -6,11 +6,12 @@ import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import DeviceInfo from 'react-native-device-info';
 import color from 'color';
+import BlurScrollView from './components/BlurScrollView';
 import IcRoundSync from './assets/icons/IcRoundSync';
 import IcRoundChevronRight from './assets/icons/IcRoundChevronRight';
 import IcRoundOpenInNew from './assets/icons/IcRoundOpenInNew';
 import useCopywritings from '../utils/useCopywritings';
-import BlurScrollView from './components/BlurScrollView';
+import useToast from '../utils/useToast';
 
 const version = DeviceInfo.getVersion();
 const buildNumber = DeviceInfo.getBuildNumber();
@@ -28,10 +29,16 @@ const Settings: React.FC = () => {
   const navigation = useNavigation<ScreenNavigationProp>();
 
   const {colors} = useTheme();
+  const {showToast} = useToast();
 
   const {copywritings, updateCopywritings} = useCopywritings();
 
   const copywriterVersion = copywritings.version.toString();
+
+  const updateupdateCopywritingsInSettings = async () => {
+    const resp = await updateCopywritings();
+    resp === '200' && showToast('已更新至最新版');
+  };
 
   const settings = [
     {
@@ -51,7 +58,7 @@ const Settings: React.FC = () => {
             6,
           )}.${copywriterVersion.substring(6, 8)}.${copywriterVersion.substring(8, 10)}`,
           rightIcon: <IcRoundSync size={20} color={colors.onSurfaceVariant} />,
-          onPress: () => updateCopywritings(),
+          onPress: () => updateupdateCopywritingsInSettings(),
         },
       ],
     },

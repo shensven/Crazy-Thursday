@@ -19,6 +19,7 @@ const useCopywritings = () => {
           setCopywritings(resp.data);
           storage.set('@copywriter', JSON.stringify(resp.data));
         }
+        return Promise.resolve('200');
       }
     } catch {}
   };

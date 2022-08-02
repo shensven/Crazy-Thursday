@@ -8,6 +8,7 @@ export type HeaderBlurType = 'light' | 'dark';
 export const atomHeaderBlurType = atom<HeaderBlurType>('light');
 
 export const atomHasToast = atom<boolean>(false);
+export const atomToastMsg = atom<string>('');
 
 // -----------------------------------------------------------------------------
 
