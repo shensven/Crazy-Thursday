@@ -12,6 +12,7 @@ export const storage = new MMKV();
 export const mmkvAppearance = storage.getString('@appearance');
 export const mmkvBrandKeywords = storage.getString('@brandKeywords');
 export const mmkvCopywritings = storage.getString('@copywritings');
+export const mmkvDetailFontSize = storage.getString('@detailFontSize');
 
 if (__DEV__) {
   initializeMMKVFlipper({default: storage});

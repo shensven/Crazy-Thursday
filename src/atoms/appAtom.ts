@@ -1,5 +1,5 @@
 import {atom} from 'jotai';
-import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings} from '../../App';
+import {mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings, mmkvDetailFontSize} from '../../App';
 
 export type StatusBarStyle = 'light-content' | 'dark-content';
 export const atomStatusBarStyle = atom<StatusBarStyle>('dark-content');
@@ -9,6 +9,16 @@ export const atomHeaderBlurType = atom<HeaderBlurType>('light');
 
 export const atomHasToast = atom<boolean>(false);
 export const atomToastMsg = atom<string>('');
+
+// -----------------------------------------------------------------------------
+
+let initDetailFontSize: number | undefined;
+if (mmkvDetailFontSize) {
+  initDetailFontSize = JSON.parse(mmkvDetailFontSize);
+} else {
+  initDetailFontSize = 18;
+}
+export const atomDetailFontSize = atom<number>(initDetailFontSize!);
 
 // -----------------------------------------------------------------------------
 

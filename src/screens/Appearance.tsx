@@ -54,7 +54,7 @@ const Appearance: React.FC = () => {
             }}
             onPress={item.onPress}>
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-              <Text style={{color: colors.onSurfaceVariant}}>{item.label}</Text>
+              <Text style={{color: colors.onSurfaceVariant, includeFontPadding: false}}>{item.label}</Text>
               {appearance === item.value && <IcRoundCheck size={18} color={colors.primary} />}
             </View>
           </TouchableRipple>

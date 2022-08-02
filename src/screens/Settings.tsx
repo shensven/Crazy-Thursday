@@ -157,9 +157,10 @@ const Settings: React.FC = () => {
                 }}
                 onPress={child.onPress}>
                 <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-                  <Text style={{color: colors.onSurfaceVariant}}>{child.label}</Text>
+                  <Text style={{color: colors.onSurfaceVariant, includeFontPadding: false}}>{child.label}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
-                    <Text style={{fontSize: 12, marginRight: 8, color: colors.onSurfaceVariant}}>
+                    <Text
+                      style={{fontSize: 12, marginRight: 8, color: colors.onSurfaceVariant, includeFontPadding: false}}>
                       {child.description}
                     </Text>
                     <View style={{width: 20, height: 20, alignItems: 'center', justifyContent: 'center'}}>

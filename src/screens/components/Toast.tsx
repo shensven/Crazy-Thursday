@@ -29,7 +29,7 @@ const Toast: React.FC = () => {
         shadowRadius: 16,
         elevation: 8,
       }}>
-      <Text style={{color: color('#000').alpha(0.8).toString(), fontSize: 13}}>
+      <Text style={{color: color('#000').alpha(0.8).toString(), fontSize: 13, includeFontPadding: false}}>
         {toastMsg} {toastMsg && '🎉'}
       </Text>
     </Fade>
