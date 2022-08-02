@@ -1,5 +1,5 @@
 import React from 'react';
-import {Linking, View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {Text, TouchableRipple, useTheme} from 'react-native-paper';
@@ -160,7 +160,13 @@ const Settings: React.FC = () => {
                   <Text style={{color: colors.onSurfaceVariant, includeFontPadding: false}}>{child.label}</Text>
                   <View style={{flexDirection: 'row', alignItems: 'center'}}>
                     <Text
-                      style={{fontSize: 12, marginRight: 8, color: colors.onSurfaceVariant, includeFontPadding: false}}>
+                      style={{
+                        fontFamily: Platform.OS === 'ios' ? 'courier' : 'monospace',
+                        fontSize: 12,
+                        marginRight: 8,
+                        color: color(colors.onSurfaceVariant).alpha(0.5).toString(),
+                        includeFontPadding: false,
+                      }}>
                       {child.description}
                     </Text>
                     <View style={{width: 20, height: 20, alignItems: 'center', justifyContent: 'center'}}>
