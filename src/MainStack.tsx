@@ -3,7 +3,7 @@ import RNBootSplash from 'react-native-bootsplash';
 import {createStackNavigator, HeaderStyleInterpolators, TransitionPresets} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {useTheme} from 'react-native-paper';
-import useDesignSystem from './utils/useDesignSystem';
+import useColorSystem from './utils/useColorSystem';
 import Home from './screens/Home';
 import HomeHeaderRight from './screens/components/HomeHeaderRight';
 import Detail from './screens/Detail';
@@ -17,7 +17,7 @@ const MainStack: React.FC = () => {
   const Stack = createStackNavigator();
 
   const {colors} = useTheme();
-  const {getNavigationAppearance, updateStatusBarStyle} = useDesignSystem();
+  const {getNavigationAppearance, updateStatusBarStyle} = useColorSystem();
 
   return (
     <NavigationContainer

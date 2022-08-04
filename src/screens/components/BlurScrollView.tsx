@@ -3,7 +3,7 @@ import {NativeModules, Platform, View} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useHeaderHeight} from '@react-navigation/elements';
 import {BlurView} from '@react-native-community/blur';
-import useDesignSystem from '../../utils/useDesignSystem';
+import useColorSystem from '../../utils/useColorSystem';
 
 const BlurScrollView: React.FC<{
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const BlurScrollView: React.FC<{
   const statusBarHeight = StatusBarManager.HEIGHT;
 
   const headerHeight = useHeaderHeight();
-  const {headerBlurType} = useDesignSystem();
+  const {headerBlurType} = useColorSystem();
 
   return (
     <View style={{flex: 1}}>

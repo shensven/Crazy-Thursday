@@ -50,7 +50,7 @@ const Detail: React.FC = () => {
       headerRight: () => (
         <Button
           theme={{
-            roundness: 6,
+            roundness: 8,
           }}
           mode="contained"
           style={{marginRight: 8}}
@@ -105,7 +105,7 @@ const Detail: React.FC = () => {
             backgroundColor: color(colors.secondary).alpha(0.05).toString(),
             margin: 16,
             paddingHorizontal: 16,
-            borderRadius: 8,
+            borderRadius: 16,
             height: 48,
             justifyContent: 'center',
             alignItems: 'center',

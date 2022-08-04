@@ -4,14 +4,14 @@ import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import color from 'color';
 import IcRoundCheck from './assets/icons/IcRoundCheck';
-import useDesignSystem from '../utils/useDesignSystem';
+import useColorSystem from '../utils/useColorSystem';
 import BlurScrollView from './components/BlurScrollView';
 
 const Appearance: React.FC = () => {
   const insets = useSafeAreaInsets();
 
   const {colors} = useTheme();
-  const {appearance, updateAppearance} = useDesignSystem();
+  const {appearance, updateAppearance} = useColorSystem();
 
   const appearances = [
     {

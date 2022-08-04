@@ -4,7 +4,7 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {MMKV} from 'react-native-mmkv';
 import {StatusBar} from 'react-native-bars';
 import {initializeMMKVFlipper} from 'react-native-mmkv-flipper-plugin';
-import useDesignSystem from './src/utils/useDesignSystem';
+import useColorSystem from './src/utils/useColorSystem';
 import MainStack from './src/MainStack';
 import Toast from './src/screens/components/Toast';
 
@@ -19,7 +19,7 @@ if (__DEV__) {
 }
 
 const App: React.FC = () => {
-  const {statusBarStyle, getPaperAppearance} = useDesignSystem();
+  const {statusBarStyle, getPaperAppearance} = useColorSystem();
 
   return (
     <PaperProvider theme={getPaperAppearance()}>

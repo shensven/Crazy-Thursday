@@ -13,7 +13,7 @@ import color from 'color';
 import useCopywritings from '../utils/useCopywritings';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
-import useDesignSystem from '../utils/useDesignSystem';
+import useColorSystem from '../utils/useColorSystem';
 import BlurScrollView from './components/BlurScrollView';
 
 const screenWidth = Dimensions.get('screen').width;
@@ -50,7 +50,7 @@ const Home: React.FC = () => {
 
   const navigation = useNavigation<ScreenNavigationProp>();
   const {colors} = useTheme();
-  const {headerBlurType} = useDesignSystem();
+  const {headerBlurType} = useColorSystem();
 
   const {copyToClipboard} = useClipboard();
 
@@ -109,13 +109,13 @@ const Home: React.FC = () => {
             shadowRadius: 8,
             elevation: 8,
             backgroundColor: colors.primary,
-            borderRadius: 12,
+            borderRadius: 16,
             justifyContent: 'center',
             alignItems: 'center',
           }}>
           <TouchableRipple
             borderless
-            style={{borderTopLeftRadius: 8, borderTopRightRadius: 8}}
+            style={{borderTopLeftRadius: 10, borderTopRightRadius: 10}}
             onPress={() =>
               navigation.navigate('Detail', {index, currentCopywriterWithBrand: currentCopywriter.withBrand})
             }>
@@ -187,8 +187,8 @@ const Home: React.FC = () => {
           <TouchableRipple
             borderless
             style={{
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
+              borderBottomLeftRadius: 10,
+              borderBottomRightRadius: 10,
               backgroundColor: color(colors.onSecondary).alpha(0.3).toString(),
               width: '100%',
               height: 48,

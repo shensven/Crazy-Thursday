@@ -37,9 +37,8 @@ const BrandEditer: React.FC = () => {
             label="中文关键字"
             maxLength={12}
             value={form.Chinese}
-            onChangeText={text => {
-              setForm({...form, Chinese: text});
-            }}
+            outlineColor={color(colors.secondary).alpha(0.12).toString()}
+            onChangeText={text => setForm({...form, Chinese: text})}
           />
           <Text
             style={{
@@ -58,9 +57,8 @@ const BrandEditer: React.FC = () => {
             label="英文关键字"
             maxLength={12}
             value={form.English}
-            onChangeText={text => {
-              setForm({...form, English: text});
-            }}
+            outlineColor={color(colors.secondary).alpha(0.12).toString()}
+            onChangeText={text => setForm({...form, English: text})}
           />
 
           <Text
@@ -79,7 +77,7 @@ const BrandEditer: React.FC = () => {
         mode="contained"
         disabled={brandKeywords.Chinese === form.Chinese && brandKeywords.English === form.English}
         style={{marginHorizontal: 16, marginTop: 40, marginBottom: 32 + insets.bottom}}
-        labelStyle={{lineHeight: 24}}
+        labelStyle={{lineHeight: 28}}
         onPress={() =>
           updateBrandKeywords({
             Chinese: form.Chinese,

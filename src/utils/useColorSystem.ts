@@ -23,7 +23,7 @@ declare global {
 
 const paperLightTheme = {
   ...PaperDefaultTheme,
-  roundness: 12,
+  roundness: 16,
   version: 2,
   colors: {
     ...PaperDefaultTheme.colors,
@@ -43,7 +43,7 @@ const paperLightTheme = {
 
 const paperDarkTheme = {
   ...PaperDarkTheme,
-  roundness: 12,
+  roundness: 16,
   version: 2,
   colors: {
     ...PaperDarkTheme.colors,
@@ -76,7 +76,7 @@ const navigationDarkTheme = {
   },
 };
 
-const useDesignSystem = () => {
+const useColorSystem = () => {
   const colorScheme = useColorScheme();
   const [statusBarStyle, setStatusBarStyle] = useAtom(atomStatusBarStyle);
   const [headerBlurType, setHeaderBlurType] = useAtom(atomHeaderBlurType);
@@ -159,4 +159,4 @@ const useDesignSystem = () => {
   };
 };
 
-export default useDesignSystem;
+export default useColorSystem;
