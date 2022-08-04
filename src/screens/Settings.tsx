@@ -20,6 +20,7 @@ type StackParamList = {
   BrandEditer: undefined;
   Appearance: undefined;
   PrivacyPolicy: undefined;
+  Welcome: undefined;
 };
 type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
@@ -76,6 +77,12 @@ const Settings: React.FC = () => {
           description: '',
           rightIcon: <IcRoundChevronRight size={20} color={colors.onSurfaceVariant} />,
           onPress: () => navigation.navigate('PrivacyPolicy'),
+        },
+        {
+          label: '欢迎',
+          description: '',
+          rightIcon: <IcRoundChevronRight size={20} color={colors.onSurfaceVariant} />,
+          onPress: () => navigation.navigate('Welcome'),
         },
         // {
         //   label: '好评鼓励',

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {Dimensions, Image, Platform, View} from 'react-native';
 import {Button, Text, TouchableRipple, useTheme} from 'react-native-paper';
 import MaskedView from '@react-native-masked-view/masked-view';
@@ -10,6 +10,7 @@ import {BlurView} from '@react-native-community/blur';
 import {useUpdateEffect} from 'ahooks';
 import {random} from 'lodash';
 import color from 'color';
+import useWelcome from '../utils/useWelcome';
 import useCopywritings from '../utils/useCopywritings';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
@@ -38,6 +39,7 @@ export interface Index {
 }
 
 type StackParamList = {
+  Welcome: undefined;
   Detail: {
     index: Index;
     currentCopywriterWithBrand: string;
@@ -52,6 +54,7 @@ const Home: React.FC = () => {
   const {colors} = useTheme();
   const {headerBlurType} = useColorSystem();
 
+  const {welcome} = useWelcome();
   const {copyToClipboard} = useClipboard();
 
   const {copywritings, updateCopywritings} = useCopywritings();
@@ -73,6 +76,12 @@ const Home: React.FC = () => {
       text: random(0, copywritings.bundle.length - 1),
     });
   };
+
+  useLayoutEffect(() => {
+    if (!welcome) {
+      navigation.navigate('Welcome');
+    }
+  }, []);
 
   useEffect(() => {
     setCurrentCopywriter({

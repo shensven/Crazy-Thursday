@@ -12,6 +12,7 @@ import BrandEditer from './screens/BrandEditer';
 import Appearance from './screens/Appearance';
 import PrivacyPolicy from './screens/PrivacyPolicy';
 import {Platform} from 'react-native';
+import Welcome from './screens/Welcome';
 
 const MainStack: React.FC = () => {
   const Stack = createStackNavigator();
@@ -58,6 +59,16 @@ const MainStack: React.FC = () => {
             },
 
             headerRight: () => <HomeHeaderRight />,
+          }}
+        />
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{
+            title: '欢迎',
+            header: () => undefined,
+            gestureEnabled: false,
+            ...TransitionPresets.ModalPresentationIOS,
           }}
         />
         <Stack.Screen

@@ -7,8 +7,10 @@ import {initializeMMKVFlipper} from 'react-native-mmkv-flipper-plugin';
 import useColorSystem from './src/utils/useColorSystem';
 import MainStack from './src/MainStack';
 import Toast from './src/screens/components/Toast';
+// import Mask from './src/screens/components/Mask';
 
 export const storage = new MMKV();
+export const mmkvWelcome = storage.getString('@welcome');
 export const mmkvAppearance = storage.getString('@appearance');
 export const mmkvBrandKeywords = storage.getString('@brandKeywords');
 export const mmkvCopywritings = storage.getString('@copywritings');
@@ -26,6 +28,7 @@ const App: React.FC = () => {
       <StatusBar animated={true} barStyle={statusBarStyle} />
       <MainStack />
       <Toast />
+      {/* <Mask hasMask={true} /> */}
     </PaperProvider>
   );
 };
