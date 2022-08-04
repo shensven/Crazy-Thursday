@@ -42,16 +42,36 @@ const Welcome: React.FC = () => {
         onPageSelected={evt => setCurrentIndex(evt.nativeEvent.position)}>
         <View style={{paddingHorizontal: 16}}>
           <Text style={{fontSize: 32, fontWeight: 'bold'}}>疯狂星期四 🎉</Text>
-          <Text style={{fontSize: 15, lineHeight: 15 * 1.7, marginTop: 20, marginHorizontal: 2, textAlign: 'justify'}}>
+          <Text
+            style={{
+              fontSize: 15,
+              lineHeight: 15 * 1.7,
+              marginTop: 20,
+              marginHorizontal: 2,
+              textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
+            }}>
             是一个由社区驱动的 App，所有的数据托管在 GitHub 平台，唯一的网络请求活动仅用于更新文案数据库。
           </Text>
         </View>
         <View style={{paddingHorizontal: 16}}>
           <Text style={{fontSize: 32, fontWeight: 'bold'}}>让我们开始吧！</Text>
-          <Text style={{fontSize: 15, lineHeight: 15 * 1.7, marginTop: 20, marginHorizontal: 2, textAlign: 'justify'}}>
+          <Text
+            style={{
+              fontSize: 15,
+              lineHeight: 15 * 1.7,
+              marginTop: 20,
+              marginHorizontal: 2,
+              textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
+            }}>
             你还可随时前往【设置】页面
           </Text>
-          <Text style={{fontSize: 15, lineHeight: 15 * 1.7, marginHorizontal: 2, textAlign: 'justify'}}>
+          <Text
+            style={{
+              fontSize: 15,
+              lineHeight: 15 * 1.7,
+              marginHorizontal: 2,
+              textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
+            }}>
             轻点【更新文案数据库】以手动获取最新文案集
           </Text>
           {Platform.OS === 'ios' && (
