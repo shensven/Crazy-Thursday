@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Dimensions, Image, Platform, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -28,10 +28,6 @@ const Welcome: React.FC = () => {
       trueWelcome();
     }
   };
-
-  useEffect(() => {
-    navigation.setOptions({});
-  }, []);
 
   return (
     <View style={{flex: 1, justifyContent: 'space-between'}}>
