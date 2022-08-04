@@ -29,6 +29,7 @@
         "react-native-linear-gradient",
         "react-native-mmkv",
         "react-native-paper",
+        "react-native-pager-view",
         "react-native-reanimated",
         "react-native-safe-area-context",
         "react-native-screens",
