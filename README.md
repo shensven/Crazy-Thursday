@@ -22,7 +22,7 @@
 
 ### iOS 版本
 
-- iOS 正式版尚未发布，不过你可以通过 [TestFlight](https://testflight.apple.com/join/qomPElR8) 进行先行体验
+- iOS 正式版尚未发布，不过你可以通过 [TestFlight](https://testflight.apple.com/join/qomPElR8) 进行先行体验和测试。因 TestFlight 席位有限，我们会对 1 周内未安装的用户进行移除操作。如果遇到 TestFlight 链接不可用，那是 Apple 的锅，我们会尽快处理。
 
 ### Android 版本
 
