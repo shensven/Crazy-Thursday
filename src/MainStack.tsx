@@ -70,6 +70,10 @@ const MainStack: React.FC = () => {
             gestureEnabled: false,
             ...TransitionPresets.ModalPresentationIOS,
           }}
+          listeners={{
+            focus: () => updateStatusBarStyle('light-content'),
+            beforeRemove: () => updateStatusBarStyle(),
+          }}
         />
         <Stack.Screen
           name="Detail"
