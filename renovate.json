@@ -6,8 +6,10 @@
   "packageRules": [
     {
       "groupName": "dependencies",
+      "matchFiles": ["package.json"],
+      "matchManagers": ["npm"],
       "matchDepTypes": ["dependencies"],
-      "matchUpdateTypes": ["patch", "minor"],
+      "matchUpdateTypes": ["minor"],
       "enabled": false,
       "excludePackageNames": [
         "@react-native-clipboard/clipboard",
@@ -33,7 +35,17 @@
         "react-native-reanimated",
         "react-native-safe-area-context",
         "react-native-screens",
-        "react-native-svg",
+        "react-native-svg"
+      ]
+    },
+    {
+      "groupName": "devDependencies",
+      "matchFiles": ["package.json"],
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor"],
+      "enabled": false,
+      "excludePackageNames": [
         "@types/color",
         "@types/lodash",
         "react-native-flipper",
