@@ -7,13 +7,15 @@ import PagerView from 'react-native-pager-view';
 import color from 'color';
 import useWelcome from '../utils/useWelcome';
 
-const screenHeight = Dimensions.get('screen').height;
-const screenWidth = Dimensions.get('screen').width;
-
 const Welcome: React.FC = () => {
+  const screenWidth = Dimensions.get('screen').width;
+  const screenHeight = Dimensions.get('screen').height;
+
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation();
+
   const {colors} = useTheme();
+
+  const navigation = useNavigation();
 
   const {trueWelcome} = useWelcome();
 

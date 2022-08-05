@@ -26,15 +26,15 @@ type ScreenRouteProp = RouteProp<StackParamList, 'Params'>;
 
 const majarSystemVersion = Platform.OS === 'ios' ? Number(DeviceInfo.getSystemVersion().split('.')[0]) : 0;
 
-const screenWidth = Dimensions.get('screen').width;
-const screenHeight = Dimensions.get('screen').height;
-
 const Detail: React.FC = () => {
+  const screenWidth = Dimensions.get('screen').width;
+  const screenHeight = Dimensions.get('screen').height;
+
+  const insets = useSafeAreaInsets();
   const headerHeight = useHeaderHeight();
 
   const {colors} = useTheme();
 
-  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const route = useRoute<ScreenRouteProp>();
 
@@ -73,7 +73,7 @@ const Detail: React.FC = () => {
   return (
     <View style={{flex: 1}}>
       <ScrollView scrollIndicatorInsets={{top: headerHeight}}>
-        <Image source={imageSets[index.image]} style={{width: screenWidth, height: screenHeight / 3 + headerHeight}} />
+        <Image source={imageSets[index.image]} style={{width: screenWidth, height: screenHeight / 3}} />
         <View style={{position: 'relative'}}>
           <Fade
             visible={hasTooltip}

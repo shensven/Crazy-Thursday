@@ -17,9 +17,6 @@ import useClipboard from '../utils/useClipboard';
 import useColorSystem from '../utils/useColorSystem';
 import BlurScrollView from './components/BlurScrollView';
 
-const screenWidth = Dimensions.get('screen').width;
-const screenHeight = Dimensions.get('screen').height;
-
 export const imageSets = [
   require('./assets/images/0.jpg'),
   require('./assets/images/1.jpg'),
@@ -48,6 +45,9 @@ type StackParamList = {
 type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
 const Home: React.FC = () => {
+  const screenWidth = Dimensions.get('screen').width;
+  const screenHeight = Dimensions.get('screen').height;
+
   const insets = useSafeAreaInsets();
 
   const navigation = useNavigation<ScreenNavigationProp>();
@@ -136,10 +136,7 @@ const Home: React.FC = () => {
                 style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Image
                   source={imageSets[index.image]}
-                  style={{
-                    width: screenWidth - 32 - 12,
-                    height: screenHeight / 2 - 48,
-                  }}
+                  style={{width: screenWidth - 32 - 12, height: screenHeight / 2 - 48}}
                 />
               </MaskedView>
               <Text
