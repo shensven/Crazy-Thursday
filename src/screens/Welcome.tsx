@@ -36,12 +36,13 @@ const Welcome: React.FC = () => {
       <PagerView
         ref={pageRef}
         initialPage={0}
-        style={{height: screenHeight / 2, marginTop: screenHeight / 8}}
+        style={{height: screenHeight}}
         onPageSelected={evt => setCurrentIndex(evt.nativeEvent.position)}>
-        <View style={{paddingHorizontal: 16}}>
-          <Text style={{fontSize: 32, fontWeight: 'bold'}}>疯狂星期四 🎉</Text>
+        <View style={{paddingHorizontal: 16, paddingTop: screenHeight / 8}}>
+          <Text style={{color: colors.onBackground, fontSize: 32, fontWeight: 'bold'}}>疯狂星期四 🎉</Text>
           <Text
             style={{
+              color: color(colors.onBackground).alpha(0.9).toString(),
               fontSize: 15,
               lineHeight: 15 * 1.7,
               marginTop: 20,
@@ -51,20 +52,22 @@ const Welcome: React.FC = () => {
             是一个由社区驱动的 App，所有的数据托管在 GitHub 平台，唯一的网络请求活动仅用于更新文案数据库。
           </Text>
         </View>
-        <View style={{paddingHorizontal: 16}}>
-          <Text style={{fontSize: 32, fontWeight: 'bold'}}>让我们开始吧！</Text>
+        <View style={{paddingHorizontal: 16, paddingTop: screenHeight / 8}}>
+          <Text style={{color: colors.onBackground, fontSize: 32, fontWeight: 'bold'}}>所有文案已就绪！</Text>
           <Text
             style={{
+              color: color(colors.onBackground).alpha(0.9).toString(),
               fontSize: 15,
               lineHeight: 15 * 1.7,
-              marginTop: 20,
               marginHorizontal: 2,
+              marginTop: 20,
               textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
             }}>
-            你还可随时前往【设置】页面
+            你可以随时前往【设置】页面
           </Text>
           <Text
             style={{
+              color: color(colors.onBackground).alpha(0.9).toString(),
               fontSize: 15,
               lineHeight: 15 * 1.7,
               marginHorizontal: 2,
@@ -84,9 +87,30 @@ const Welcome: React.FC = () => {
               style={{width: screenWidth - 32, height: (screenWidth - 32) * 0.75, marginTop: 8}}
             />
           )}
+          <Text
+            style={{
+              color: color(colors.onBackground).alpha(0.9).toString(),
+              fontSize: 12,
+              lineHeight: 12 * 1.7,
+              marginHorizontal: 2,
+              marginTop: 16,
+              textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
+            }}>
+            *更新文案集，需下载大约 1 MB 的数据
+          </Text>
         </View>
       </PagerView>
-      <View style={{marginHorizontal: 16, marginTop: 16, marginBottom: screenHeight / 16 + insets.bottom}}>
+      <View
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          flex: 1,
+          marginHorizontal: 16,
+          marginTop: 16,
+          marginBottom: screenHeight / 16 + insets.bottom,
+        }}>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}>
           <View
             style={{
