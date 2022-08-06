@@ -307,7 +307,7 @@ PODS:
   - React-jsinspector (0.69.3)
   - React-logger (0.69.3):
     - glog
-  - react-native-blur (4.1.0):
+  - react-native-blur (4.2.0):
     - React-Core
   - react-native-flipper (0.156.0):
     - React-Core
@@ -671,7 +671,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 1842ca163b160aeb224d2c65b2a60c393b273c67
   React-jsinspector: bb2605f98aada5d81f3494690da3ef3b4ff3b716
   React-logger: 23a50ef4c18bf9adbb51e2c979318e6b3a2e44a1
-  react-native-blur: ba2f37268542f8a26d809f48c5162705a3261fc6
+  react-native-blur: 3e9c8e8e9f7d17fa1b94e1a0ae9fd816675f5382
   react-native-flipper: 3a5a6f1c414c66c0bdfc67ac7fef36cd8c44d1f5
   react-native-mmkv: 1265a348a4711097ba29c8bcefd5971f48220f2b
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e
