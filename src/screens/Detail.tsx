@@ -27,7 +27,7 @@ type ScreenRouteProp = RouteProp<StackParamList, 'Params'>;
 const majarSystemVersion = Platform.OS === 'ios' ? Number(DeviceInfo.getSystemVersion().split('.')[0]) : 0;
 
 const Detail: React.FC = () => {
-  const screenWidth = Dimensions.get('screen').width;
+  const windowWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('screen').height;
 
   const insets = useSafeAreaInsets();
@@ -73,7 +73,7 @@ const Detail: React.FC = () => {
   return (
     <View style={{flex: 1}}>
       <ScrollView scrollIndicatorInsets={{top: headerHeight}}>
-        <Image source={imageSets[index.image]} style={{width: screenWidth, height: screenHeight / 3}} />
+        <Image source={imageSets[index.image]} style={{width: windowWidth, height: screenHeight / 3}} />
         <View style={{position: 'relative'}}>
           <Fade
             visible={hasTooltip}

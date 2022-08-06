@@ -45,7 +45,7 @@ type StackParamList = {
 type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
 const Home: React.FC = () => {
-  const screenWidth = Dimensions.get('screen').width;
+  const windowWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('screen').height;
 
   const insets = useSafeAreaInsets();
@@ -136,7 +136,7 @@ const Home: React.FC = () => {
                 style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Image
                   source={imageSets[index.image]}
-                  style={{width: screenWidth - 32 - 12, height: screenHeight / 2 - 48}}
+                  style={{width: windowWidth - 32 - 12, height: screenHeight / 2 - 48}}
                 />
               </MaskedView>
               <Text

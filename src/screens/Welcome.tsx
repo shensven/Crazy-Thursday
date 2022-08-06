@@ -8,7 +8,7 @@ import color from 'color';
 import useWelcome from '../utils/useWelcome';
 
 const Welcome: React.FC = () => {
-  const screenWidth = Dimensions.get('screen').width;
+  const windowWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('screen').height;
 
   const insets = useSafeAreaInsets();
@@ -78,13 +78,13 @@ const Welcome: React.FC = () => {
           {Platform.OS === 'ios' && (
             <Image
               source={require('./assets/guide/guide-ios.png')}
-              style={{width: screenWidth - 32, height: (screenWidth - 32) * 0.75, marginTop: 8}}
+              style={{width: windowWidth - 32, height: (windowWidth - 32) * 0.75, marginTop: 8}}
             />
           )}
           {Platform.OS === 'android' && (
             <Image
               source={require('./assets/guide/guide-android.png')}
-              style={{width: screenWidth - 32, height: (screenWidth - 32) * 0.75, marginTop: 8}}
+              style={{width: windowWidth - 32, height: (windowWidth - 32) * 0.75, marginTop: 8}}
             />
           )}
           <Text
