@@ -110,7 +110,7 @@ cd android
 
 ```sh
 yarn react-native generate-bootsplash src/assets/splash/bootsplash.png \
-  --background-color=EDE0DE \
+  --background-color=ECE9E9 \
   --logo-width=192 \
   --flavor=main
 ```
