@@ -49,7 +49,7 @@ const Welcome: React.FC = () => {
               marginHorizontal: 2,
               textAlign: Platform.OS === 'ios' ? 'justify' : 'left',
             }}>
-            是一个由社区驱动的 App，所有的数据托管在 GitHub 平台，唯一的网络请求活动仅用于更新文案数据库。
+            是一个由社区驱动的 App，所有的文案集托管在 GitHub 平台，唯一的网络请求活动仅用于获取最新文案集。
           </Text>
         </View>
         <View style={{paddingHorizontal: 16, paddingTop: screenHeight / 8}}>
