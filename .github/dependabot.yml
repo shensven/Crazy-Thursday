@@ -1,0 +1,44 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/' # Location of package manifests
+    schedule:
+      interval: 'daily'
+      timezone: 'Asia/Shanghai'
+    open-pull-requests-limit: 10
+    target-branch: 'dev'
+    allow:
+      - dependency-name: '@react-native-clipboard/clipboard'
+      - dependency-name: '@react-native-community/blur'
+      - dependency-name: '@react-native-community/slider'
+      - dependency-name: '@react-native-masked-view/masked-view'
+      - dependency-name: '@react-navigation/elements'
+      - dependency-name: '@react-navigation/native'
+      - dependency-name: '@react-navigation/stack'
+      - dependency-name: 'ahooks'
+      - dependency-name: 'axios'
+      - dependency-name: 'color'
+      - dependency-name: 'jotai'
+      - dependency-name: 'lodash'
+      - dependency-name: 'react-native'
+      - dependency-name: 'react-native-bars'
+      - dependency-name: 'react-native-bootsplash'
+      - dependency-name: 'react-native-device-info'
+      - dependency-name: 'react-native-gesture-handler'
+      - dependency-name: 'react-native-linear-gradient'
+      - dependency-name: 'react-native-mmkv'
+      - dependency-name: 'react-native-pager-view'
+      - dependency-name: 'react-native-paper'
+      - dependency-name: 'react-native-reanimated'
+      - dependency-name: 'react-native-safe-area-context'
+      - dependency-name: 'react-native-screens'
+      - dependency-name: 'react-native-svg'
+      - dependency-name: '@types/color'
+      - dependency-name: '@types/lodash'
+      - dependency-name: 'react-native-flipper'
+      - dependency-name: 'react-native-mmkv-flipper-plugin'
