@@ -73,25 +73,31 @@ const Settings: React.FC = () => {
           onPress: () => navigation.navigate('Appearance'),
         },
         {
+          label: '欢迎',
+          description: '',
+          rightIcon: <IcRoundChevronRight size={20} color={colors.onSurfaceVariant} />,
+          onPress: () => navigation.navigate('Welcome'),
+        },
+        {
           label: '隐私政策',
           description: '',
           rightIcon: <IcRoundChevronRight size={20} color={colors.onSurfaceVariant} />,
           onPress: () => navigation.navigate('PrivacyPolicy'),
         },
         {
-          label: '欢迎',
+          label: '好评鼓励',
           description: '',
-          rightIcon: <IcRoundChevronRight size={20} color={colors.onSurfaceVariant} />,
-          onPress: () => navigation.navigate('Welcome'),
+          rightIcon: <IcRoundOpenInNew size={16} color={colors.onSurfaceVariant} />,
+          onPress: () => {
+            Platform.OS === 'ios' &&
+              Linking.openURL(
+                'https://apps.apple.com/cn/app/%E7%96%AF%E7%8B%82%E6%98%9F%E6%9C%9F%E5%9B%9B/id1636127634',
+              );
+            Platform.OS === 'android' && Linking.openURL('market://details?id=com.shensven.crazythursday');
+          },
         },
-        // {
-        //   label: '好评鼓励',
-        //   description: '',
-        //   rightIcon: <IcRoundOpenInNew size={16} color={colors.onSurfaceVariant} />,
-        //   onPress: () => {},
-        // },
         {
-          label: '反馈意见',
+          label: '报告 Bug',
           description: '',
           rightIcon: <IcRoundOpenInNew size={16} color={colors.onSurfaceVariant} />,
           onPress: () => Linking.openURL('https://github.com/shensven/Crazy-Thursday/issues'),
@@ -99,7 +105,7 @@ const Settings: React.FC = () => {
       ],
     },
     {
-      title: '联系开发者',
+      title: '联系开发者 @SvenFE',
       children: [
         {
           label: '微博',
@@ -126,7 +132,7 @@ const Settings: React.FC = () => {
       children: [
         {
           label: `${version} (${buildNumber})`,
-          description: '',
+          description: 'Made with ❤️ in Kunming',
           rightIcon: undefined,
           onPress: undefined,
         },
@@ -176,9 +182,11 @@ const Settings: React.FC = () => {
                       }}>
                       {child.description}
                     </Text>
-                    <View style={{width: 20, height: 20, alignItems: 'center', justifyContent: 'center'}}>
-                      {child.rightIcon}
-                    </View>
+                    {child.rightIcon && (
+                      <View style={{width: 20, height: 20, alignItems: 'center', justifyContent: 'center'}}>
+                        {child.rightIcon}
+                      </View>
+                    )}
                   </View>
                 </View>
               </TouchableRipple>
