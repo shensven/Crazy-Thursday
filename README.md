@@ -22,11 +22,11 @@
 
 ### iOS 版本
 
-- iOS 正式版尚未发布，不过你可以通过 [TestFlight](https://testflight.apple.com/join/qomPElR8) 进行先行体验和测试。因 TestFlight 席位有限，我们会对 1 周内未安装的用户进行移除操作。如果遇到 TestFlight 链接不可用，那是 Apple 的锅，我们会尽快处理。
+- <a href="https://apps.apple.com/cn/app/%E7%96%AF%E7%8B%82%E6%98%9F%E6%9C%9F%E5%9B%9B/id1636127634"><img align='center' src="./src/assets/badge/Download_on_the_App_Store_Badge_CNSC_RGB_blk_092917.svg" height="44px"/></a>
 
 ### Android 版本
 
-- <a href="https://play.google.com/store/apps/details?id=com.shensven.crazythursday"><img align='center' src="https://play.google.com/intl/en_us/badges/static/images/badges/zh-cn_badge_web_generic.png" width="160px"/></a>
+- <a href="https://play.google.com/store/apps/details?id=com.shensven.crazythursday"><img align='center' src="./src/assets/badge/zh-cn_badge_web_generic.png" height="44px"/></a>
 - 前往 [GitHub Release](https://github.com/shensven/Crazy-Thursday/releases) 页面下载 apk 安装包
 
 ## 🔨 编译
