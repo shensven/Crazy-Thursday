@@ -27,15 +27,15 @@
 ### Android 版本
 
 - <a href="https://play.google.com/store/apps/details?id=com.shensven.crazythursday"><img align='center' src="./src/assets/badge/zh-cn_badge_web_generic.png" height="44px"/></a>
-- 前往 [GitHub Release](https://github.com/shensven/Crazy-Thursday/releases) 页面下载 apk 安装包
+- 前往 [GitHub Releases](https://github.com/shensven/Crazy-Thursday/releases) 页面下载 apk 安装包
 
 ## 🔨 编译
 
 ### 简介
 
 - 使用 [React Native](https://reactnative.dev) 编写
-- 使用 [WhiteSource Renovate](https://www.whitesourcesoftware.com/free-developer-tools/renovate) 保持依赖在同一个大版本下始终最新
-- 使用 [Github Workflow](https://github.com/shensven/Readhub-RN/actions) 进行测试、持续集成和持续交付
+- 使用 [Dependabot](https://github.com/features/security/software-supply-chain) 保持依赖在同一个大版本下始终最新
+- 使用 [Github Actions](https://github.com/shensven/Readhub-RN/actions) 进行测试、持续集成和持续交付
 - 项目启用了 [Hermes](https://hermesengine.dev)，因此推荐使用 [Flipper](https://fbflipper.com) 进行调试
 
 ### 先决条件
