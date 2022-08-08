@@ -11,6 +11,7 @@
 [![Test](https://github.com/shensven/Crazy-Thursday/actions/workflows/test.yml/badge.svg?branch=dev)](https://github.com/shensven/Crazy-Thursday/actions/workflows/test.yml)
 [![Publish](https://github.com/shensven/Crazy-Thursday/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/shensven/Crazy-Thursday/actions/workflows/publish.yml)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b2d87f19c07e48fc844c4c4ee85dd681)](https://www.codacy.com/gh/shensven/Crazy-Thursday/dashboard?utm_source=github.com&utm_medium=referral&utm_content=shensven/Crazy-Thursday&utm_campaign=Badge_Grade)
+![GitHub all releases](https://img.shields.io/github/downloads/shensven/Crazy-Thursday/total)
 
 发给你的好友，让 TA 请你吃炸鸡！
 
