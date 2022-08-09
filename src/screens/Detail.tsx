@@ -11,10 +11,12 @@ import Slider from '@react-native-community/slider';
 import Fade from 'react-native-fade';
 import {useUpdateEffect} from 'ahooks';
 import color from 'color';
+import {useAtom} from 'jotai';
 import {imageSets} from './Home';
 import type {Index} from './Home';
 import useClipboard from '../utils/useClipboard';
 import useDetailFontSize from '../utils/useDetailFontSize';
+import {atomDeviceType} from '../atoms/appAtom';
 
 type StackParamList = {
   Params: {
@@ -35,13 +37,14 @@ const Detail: React.FC = () => {
 
   const {colors} = useTheme();
 
-  const navigation = useNavigation();
-  const route = useRoute<ScreenRouteProp>();
-
   const {copyToClipboard} = useClipboard();
   const {detailFontSize, updateDetailFontSize} = useDetailFontSize();
 
+  const navigation = useNavigation();
+  const route = useRoute<ScreenRouteProp>();
   const {index, currentCopywriterWithBrand} = route.params;
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const [hasTooltip, setHasTooltip] = useState(false);
 
@@ -103,7 +106,8 @@ const Detail: React.FC = () => {
         <View
           style={{
             backgroundColor: color(colors.secondary).alpha(0.05).toString(),
-            margin: 16,
+            marginVertical: 16,
+            marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
             paddingHorizontal: 16,
             borderRadius: 16,
             height: 48,
@@ -131,7 +135,12 @@ const Detail: React.FC = () => {
           />
           <Text style={{color: colors.text, fontSize: 22, includeFontPadding: false}}>A</Text>
         </View>
-        <View style={{marginHorizontal: 20, marginBottom: 16 + insets.bottom, flexGrow: 1}}>
+        <View
+          style={{
+            marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 + 4 : 20,
+            marginBottom: 16 + insets.bottom,
+            flexGrow: 1,
+          }}>
           <Text
             style={{
               color: colors.onBackground,

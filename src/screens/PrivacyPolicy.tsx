@@ -1,16 +1,23 @@
 import React from 'react';
+import {Dimensions} from 'react-native';
 import {Text} from 'react-native-paper';
+import {useAtom} from 'jotai';
 import BlurScrollView from './components/BlurScrollView';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {atomDeviceType} from '../atoms/appAtom';
 
 const PrivacyPolicy: React.FC = () => {
+  const windowWidth = Dimensions.get('window').width;
   const insets = useSafeAreaInsets();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   return (
     <BlurScrollView>
       <Text
         style={{
-          padding: 16,
+          paddingVertical: 16,
+          paddingHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
           marginBottom: 16 + insets.bottom,
           lineHeight: 14 * 1.7,
         }}>

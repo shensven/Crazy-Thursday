@@ -1,4 +1,5 @@
 import {atom} from 'jotai';
+import DeviceInfo from 'react-native-device-info';
 import {mmkvWelcome, mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings, mmkvDetailFontSize} from '../../App';
 
 export type StatusBarStyle = 'light-content' | 'dark-content';
@@ -9,6 +10,9 @@ export const atomHeaderBlurType = atom<HeaderBlurType>('light');
 
 export const atomHasToast = atom<boolean>(false);
 export const atomToastMsg = atom<string>('');
+
+// 'Handset' | 'Tablet' | 'Tv' | 'Desktop' | 'GamingConsole' | 'unknown'
+export const atomDeviceType = atom(DeviceInfo.getDeviceType());
 
 // -----------------------------------------------------------------------------
 

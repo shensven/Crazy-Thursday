@@ -1,17 +1,22 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import color from 'color';
+import {useAtom} from 'jotai';
 import IcRoundCheck from './assets/icons/IcRoundCheck';
 import useColorSystem from '../utils/useColorSystem';
 import BlurScrollView from './components/BlurScrollView';
+import {atomDeviceType} from '../atoms/appAtom';
 
 const Appearance: React.FC = () => {
+  const windowWidth = Dimensions.get('window').width;
   const insets = useSafeAreaInsets();
 
   const {colors} = useTheme();
   const {appearance, updateAppearance} = useColorSystem();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const appearances = [
     {
@@ -36,7 +41,12 @@ const Appearance: React.FC = () => {
 
   return (
     <BlurScrollView>
-      <View style={{marginHorizontal: 16, marginTop: 16, marginBottom: 16 + insets.bottom}}>
+      <View
+        style={{
+          marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+          marginTop: 16,
+          marginBottom: 16 + insets.bottom,
+        }}>
         {appearances.map((item, index) => (
           <TouchableRipple
             key={item.label}

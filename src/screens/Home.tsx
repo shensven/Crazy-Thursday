@@ -10,12 +10,14 @@ import {BlurView} from '@react-native-community/blur';
 import {useUpdateEffect} from 'ahooks';
 import {random} from 'lodash';
 import color from 'color';
+import {useAtom} from 'jotai';
 import useWelcome from '../utils/useWelcome';
 import useCopywritings from '../utils/useCopywritings';
 import useBrandKeywords from '../utils/useBrandKeywords';
 import useClipboard from '../utils/useClipboard';
 import useColorSystem from '../utils/useColorSystem';
 import BlurScrollView from './components/BlurScrollView';
+import {atomDeviceType} from '../atoms/appAtom';
 
 export const imageSets = [
   require('./assets/images/0.jpg'),
@@ -59,6 +61,8 @@ const Home: React.FC = () => {
 
   const {copywritings, updateCopywritings} = useCopywritings();
   const {brandKeywords} = useBrandKeywords();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const [index, setIndex] = useState<Index>({
     image: random(0, 9),
@@ -110,7 +114,8 @@ const Home: React.FC = () => {
       <BlurScrollView>
         <View
           style={{
-            margin: 16,
+            marginVertical: 16,
+            marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
             padding: 6,
             shadowColor: '#000',
             shadowOpacity: 0.2,
@@ -136,7 +141,10 @@ const Home: React.FC = () => {
                 style={{alignItems: 'center', justifyContent: 'center'}}>
                 <Image
                   source={imageSets[index.image]}
-                  style={{width: windowWidth - 32 - 12, height: screenHeight / 2 - 48}}
+                  style={{
+                    width: deviceType === 'Tablet' ? windowWidth - windowWidth / 3 - 12 : windowWidth - 32 - 12,
+                    height: screenHeight / 2 - 48,
+                  }}
                 />
               </MaskedView>
               <Text
@@ -210,7 +218,11 @@ const Home: React.FC = () => {
         <BlurView blurType={headerBlurType} blurAmount={16} style={{width: '100%', position: 'absolute', bottom: 0}}>
           <Button
             mode="contained"
-            style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
+            style={{
+              marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+              marginTop: 16,
+              marginBottom: 32 + insets.bottom,
+            }}
             labelStyle={{fontSize: 15, fontWeight: 'bold', lineHeight: 32}}
             onPress={() => refresh()}>
             刷新文案
@@ -220,7 +232,11 @@ const Home: React.FC = () => {
       {Platform.OS === 'android' && (
         <Button
           mode="contained"
-          style={{marginHorizontal: 16, marginTop: 16, marginBottom: 32 + insets.bottom}}
+          style={{
+            marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+            marginTop: 16,
+            marginBottom: 32 + insets.bottom,
+          }}
           labelStyle={{fontSize: 15, fontWeight: 'bold', lineHeight: 32}}
           onPress={() => refresh()}>
           刷新文案

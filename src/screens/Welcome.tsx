@@ -5,19 +5,21 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Button, Text, useTheme} from 'react-native-paper';
 import PagerView from 'react-native-pager-view';
 import color from 'color';
+import {useAtom} from 'jotai';
 import useWelcome from '../utils/useWelcome';
+import {atomDeviceType} from '../atoms/appAtom';
 
 const Welcome: React.FC = () => {
   const windowWidth = Dimensions.get('window').width;
   const screenHeight = Dimensions.get('screen').height;
 
   const insets = useSafeAreaInsets();
-
+  const navigation = useNavigation();
   const {colors} = useTheme();
 
-  const navigation = useNavigation();
-
   const {trueWelcome} = useWelcome();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const pageRef = useRef<PagerView>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +40,11 @@ const Welcome: React.FC = () => {
         initialPage={0}
         style={{height: screenHeight}}
         onPageSelected={evt => setCurrentIndex(evt.nativeEvent.position)}>
-        <View style={{paddingHorizontal: 16, paddingTop: screenHeight / 8}}>
+        <View
+          style={{
+            paddingHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+            paddingTop: screenHeight / 8,
+          }}>
           <Text style={{color: colors.onBackground, fontSize: 32, fontWeight: 'bold'}}>疯狂星期四 🎉</Text>
           <Text
             style={{
@@ -52,7 +58,11 @@ const Welcome: React.FC = () => {
             是一个由社区驱动的 App，所有的文案集托管在 GitHub 平台，唯一的网络请求活动仅用于获取最新文案集。
           </Text>
         </View>
-        <View style={{paddingHorizontal: 16, paddingTop: screenHeight / 8}}>
+        <View
+          style={{
+            paddingHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+            paddingTop: screenHeight / 8,
+          }}>
           <Text style={{color: colors.onBackground, fontSize: 32, fontWeight: 'bold'}}>所有文案已就绪！</Text>
           <Text
             style={{
@@ -75,16 +85,34 @@ const Welcome: React.FC = () => {
             }}>
             轻点【更新文案数据库】以手动获取最新文案集
           </Text>
-          {Platform.OS === 'ios' && (
+          {Platform.OS === 'ios' && deviceType === 'Tablet' && (
+            <Image
+              source={require('./assets/guide/guide-ipados.png')}
+              style={{
+                width: windowWidth - 32 - windowWidth / 3,
+                height: (windowWidth - 32 - windowWidth / 3) * 0.5625,
+                marginTop: 8,
+              }}
+            />
+          )}
+          {Platform.OS === 'ios' && deviceType !== 'Tablet' && (
             <Image
               source={require('./assets/guide/guide-ios.png')}
-              style={{width: windowWidth - 32, height: (windowWidth - 32) * 0.75, marginTop: 8}}
+              style={{
+                width: windowWidth - 32,
+                height: (windowWidth - 32) * 0.75,
+                marginTop: 8,
+              }}
             />
           )}
           {Platform.OS === 'android' && (
             <Image
               source={require('./assets/guide/guide-android.png')}
-              style={{width: windowWidth - 32, height: (windowWidth - 32) * 0.75, marginTop: 8}}
+              style={{
+                width: deviceType === 'Tablet' ? windowWidth - windowWidth / 3 : windowWidth - 32,
+                height: deviceType === 'Tablet' ? (windowWidth - windowWidth / 3) * 0.75 : (windowWidth - 32) * 0.75,
+                marginTop: 8,
+              }}
             />
           )}
           <Text
@@ -107,7 +135,7 @@ const Welcome: React.FC = () => {
           left: 0,
           right: 0,
           flex: 1,
-          marginHorizontal: 16,
+          marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
           marginTop: 16,
           marginBottom: screenHeight / 16 + insets.bottom,
         }}>

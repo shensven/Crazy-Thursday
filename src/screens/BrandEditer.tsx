@@ -1,21 +1,24 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 import {Button, Text, TextInput, useTheme} from 'react-native-paper';
 import color from 'color';
+import {useAtom} from 'jotai';
 import BlurScrollView from './components/BlurScrollView';
 import useBrandKeywords from '../utils/useBrandKeywords';
-import {type BrandKeywords} from '../atoms/appAtom';
+import type {BrandKeywords} from '../atoms/appAtom';
+import {atomDeviceType} from '../atoms/appAtom';
 
 const BrandEditer: React.FC = () => {
+  const windowWidth = Dimensions.get('window').width;
   const insets = useSafeAreaInsets();
-
   const navigation = useNavigation();
-
   const {colors} = useTheme();
 
   const {brandKeywords, updateBrandKeywords} = useBrandKeywords();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const [form, setForm] = React.useState<BrandKeywords>({
     Chinese: brandKeywords.Chinese,
@@ -26,7 +29,7 @@ const BrandEditer: React.FC = () => {
     <BlurScrollView>
       <View
         style={{
-          paddingHorizontal: 16,
+          paddingHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
           paddingTop: 16,
           backgroundColor: color(colors.secondary).alpha(0.05).toString(),
         }}>
@@ -76,7 +79,11 @@ const BrandEditer: React.FC = () => {
       <Button
         mode="contained"
         disabled={brandKeywords.Chinese === form.Chinese && brandKeywords.English === form.English}
-        style={{marginHorizontal: 16, marginTop: 40, marginBottom: 32 + insets.bottom}}
+        style={{
+          marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
+          marginTop: 40,
+          marginBottom: 32 + insets.bottom,
+        }}
         labelStyle={{lineHeight: 28}}
         onPress={() =>
           updateBrandKeywords({

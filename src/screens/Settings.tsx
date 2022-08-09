@@ -1,17 +1,19 @@
 import React from 'react';
-import {Linking, Platform, View} from 'react-native';
+import {Dimensions, Linking, Platform, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackScreenProps} from '@react-navigation/stack';
 import {Text, TouchableRipple, useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import DeviceInfo from 'react-native-device-info';
 import color from 'color';
+import {useAtom} from 'jotai';
 import BlurScrollView from './components/BlurScrollView';
 import IcRoundSync from './assets/icons/IcRoundSync';
 import IcRoundChevronRight from './assets/icons/IcRoundChevronRight';
 import IcRoundOpenInNew from './assets/icons/IcRoundOpenInNew';
 import useCopywritings from '../utils/useCopywritings';
 import useToast from '../utils/useToast';
+import {atomDeviceType} from '../atoms/appAtom';
 
 const version = DeviceInfo.getVersion();
 const buildNumber = DeviceInfo.getBuildNumber();
@@ -26,6 +28,7 @@ type ScreenNavigationProp = StackScreenProps<StackParamList>['navigation'];
 
 const Settings: React.FC = () => {
   const insets = useSafeAreaInsets();
+  const windowWidth = Dimensions.get('window').width;
 
   const navigation = useNavigation<ScreenNavigationProp>();
 
@@ -33,8 +36,9 @@ const Settings: React.FC = () => {
   const {showToast} = useToast();
 
   const {copywritings, updateCopywritings} = useCopywritings();
-
   const copywriterVersion = copywritings.version.toString();
+
+  const [deviceType] = useAtom(atomDeviceType);
 
   const updateupdateCopywritingsInSettings = async () => {
     const resp = await updateCopywritings();
@@ -144,7 +148,7 @@ const Settings: React.FC = () => {
     <BlurScrollView>
       <View
         style={{
-          marginHorizontal: 16,
+          marginHorizontal: deviceType === 'Tablet' ? windowWidth / 6 : 16,
           marginTop: 16,
           marginBottom: 16 + insets.bottom,
         }}>
