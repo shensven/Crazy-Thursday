@@ -144,6 +144,7 @@ const Home: React.FC = () => {
                   style={{
                     width: deviceType === 'Tablet' ? windowWidth - windowWidth / 3 - 12 : windowWidth - 32 - 12,
                     height: screenHeight / 2 - 48,
+                    minHeight: windowWidth,
                   }}
                 />
               </MaskedView>
