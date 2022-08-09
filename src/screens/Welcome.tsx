@@ -89,8 +89,8 @@ const Welcome: React.FC = () => {
             <Image
               source={require('./assets/guide/guide-ipados.png')}
               style={{
-                width: windowWidth - 32 - windowWidth / 3,
-                height: (windowWidth - 32 - windowWidth / 3) * 0.5625,
+                width: windowWidth - windowWidth / 3,
+                height: (windowWidth - windowWidth / 3) * 0.5625,
                 marginTop: 8,
               }}
             />
