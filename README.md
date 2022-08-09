@@ -21,7 +21,7 @@
 
 ## 📦 分发方式
 
-### iOS 版本
+### iOS & iPadOS 版本
 
 - <a href="https://apps.apple.com/cn/app/%E7%96%AF%E7%8B%82%E6%98%9F%E6%9C%9F%E5%9B%9B/id1636127634"><img align='center' src="./src/assets/badge/Download_on_the_App_Store_Badge_CNSC_RGB_blk_092917.svg" height="44px"/></a>
 
