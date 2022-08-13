@@ -11,7 +11,9 @@ public class MainActivity extends ReactActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(null);
+    RNBootSplash.init(this); // <- initialize the splash screen
+    super.onCreate(savedInstanceState);
+    RNBars.init(this, "dark-content"); // <- initialize the navigation bar
   }
 
   /**
@@ -51,13 +53,6 @@ public class MainActivity extends ReactActivity {
       // If you opted-in for the New Architecture, we enable Concurrent Root (i.e. React 18).
       // More on this on https://reactjs.org/blog/2022/03/29/react-v18.html
       return BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
-    }
-
-    @Override
-    protected void loadApp(String appKey) {
-      RNBootSplash.init(getPlainActivity()); // <- initialize the splash screen
-      super.loadApp(appKey);
-      RNBars.init(getPlainActivity(), "dark-content"); // <- initialize with initial bars styles (could be light-content)
     }
   }
 }
