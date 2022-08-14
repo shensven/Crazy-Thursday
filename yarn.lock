@@ -6467,10 +6467,10 @@ react-native-bars@^1.2.1:
   resolved "https://registry.yarnpkg.com/react-native-bars/-/react-native-bars-1.2.1.tgz#3fce4ba14112b6b04cead4ad8f8e89302fb85e42"
   integrity sha512-BXuLV2Re2loPdhhE3B3GnhHfkqcxN9AhBXvMXn4Ms3Shmqms5mPQoeQx2bxHX97Uwkw7pcVZLVn70PGWsyY5+w==
 
-react-native-bootsplash@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-4.3.1.tgz#ef62b346f7467a1df57bbdeb0b8f8874f0211b56"
-  integrity sha512-/ztk9u8OHDkXFT1UdPOk1EEG6TByBZelgTQPB0A6NEmypbCDxbKPrssL7Q9s5oeiL355eM9miPSBjPWQk43rOw==
+react-native-bootsplash@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-bootsplash/-/react-native-bootsplash-4.3.2.tgz#347b024975dc344310ee4d95cb3be56b0b39e381"
+  integrity sha512-HzXl6AKk4sRjEtV+1C7q4gSXP5kYMhpzGaB4DllZNObdZ8oVH8Ac7Y9ShKZ8wLQLJaG/TtzyGHKIDaNi0oNGJA==
   dependencies:
     fs-extra "^10.1.0"
     jimp "^0.16.1"
