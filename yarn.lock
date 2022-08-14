@@ -6496,10 +6496,10 @@ react-native-fade@^2.1.1:
   resolved "https://registry.yarnpkg.com/react-native-fade/-/react-native-fade-2.1.1.tgz#f7124ecdd474ac831c01b1c1a15a75c57d3b46d6"
   integrity sha512-XzXuYMCukIYodMLwwUw22FjiIhTedAM33CJX9iXcA17m1knbwG1Gs1mpuc/YeJdJhIY/5T0IlkluncmVn+ITrw==
 
-react-native-flipper@^0.157.0:
-  version "0.157.0"
-  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.157.0.tgz#e9f92c4fea1bb7fc0f17f38ef35be197e7d33028"
-  integrity sha512-jnOV/Gb1OwPCSycrpKHGXnmtGhDMvSxsvbUI7Nlukthn+T7xsWPveitijT1Z+PGDIPNqbjz2OT4R7CB1Kuu9jA==
+react-native-flipper@^0.158.0:
+  version "0.158.0"
+  resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.158.0.tgz#e043213f0256ea196fa54cfb4af6868ea86ceff1"
+  integrity sha512-c7cegCz4nsEQatHugNjG+XW4vabiuefgTIw7ZL8BypPz8pxzKTGIqP0cXvHp1XxNwHKxnH8TQnBiPihalTfJ+w==
 
 react-native-gesture-handler@^2.5.0:
   version "2.5.0"
