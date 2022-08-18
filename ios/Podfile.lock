@@ -308,7 +308,7 @@ PODS:
     - glog
   - react-native-blur (4.2.0):
     - React-Core
-  - react-native-flipper (0.157.0):
+  - react-native-flipper (0.159.0):
     - React-Core
   - react-native-mmkv (2.4.3):
     - MMKV (>= 1.2.13)
@@ -429,7 +429,7 @@ PODS:
   - RNScreens (3.15.0):
     - React-Core
     - React-RCTImage
-  - RNSVG (12.4.4):
+  - RNSVG (13.0.0):
     - React-Core
   - SocketRocket (0.6.0)
   - Yoga (1.14.0)
@@ -671,7 +671,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 8a3d3f5dcd23a91e8c80b1bf0e96902cd1dca999
   React-logger: 1088859f145b8f6dd0d3ed051a647ef0e3e80fad
   react-native-blur: 3e9c8e8e9f7d17fa1b94e1a0ae9fd816675f5382
-  react-native-flipper: cc9cdf47db2bbe0d9227eeec4f93e2290e55674b
+  react-native-flipper: dc5290261fbeeb2faec1bdc57ae6dd8d562e1de4
   react-native-mmkv: 1265a348a4711097ba29c8bcefd5971f48220f2b
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e
   react-native-safe-area-context: 6c12e3859b6f27b25de4fee8201cfb858432d8de
@@ -695,11 +695,11 @@ SPEC CHECKSUMS:
   RNGestureHandler: bad495418bcbd3ab47017a38d93d290ebd406f50
   RNReanimated: 2cf7451318bb9cc430abeec8d67693f9cf4e039c
   RNScreens: 4a1af06327774490d97342c00aee0c2bafb497b7
-  RNSVG: ecd661f380a07ba690c9c5929c475a44f432d674
+  RNSVG: 42a0c731b11179ebbd27a3eeeafa7201ebb476ff
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: ff994563b2fd98c982ca58e8cd9db2cdaf4dda74
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: fb42ec15948499c7ab282c3c078e1025e551e52a
+PODFILE CHECKSUM: 4552ed1a5eae6a9e076e05f811c8a4d5437756c9
 
 COCOAPODS: 1.11.3
