@@ -21,6 +21,7 @@ const useCopywritings = () => {
         }
         return Promise.resolve('200');
       }
+      return Promise.reject();
     } catch {}
   };
 

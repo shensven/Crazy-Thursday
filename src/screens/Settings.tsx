@@ -41,8 +41,12 @@ const Settings: React.FC = () => {
   const [deviceType] = useAtom(atomDeviceType);
 
   const updateupdateCopywritingsInSettings = async () => {
-    const resp = await updateCopywritings();
-    resp === '200' && showToast('已更新至最新版');
+    try {
+      const resp = await updateCopywritings();
+      if (resp === '200') {
+        showToast('已更新至最新版');
+      }
+    } catch {}
   };
 
   const settings = [
