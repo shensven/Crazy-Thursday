@@ -321,7 +321,7 @@ PODS:
     - RCTTypeSafety
     - React-Core
     - ReactCommon/turbomodule/core
-  - react-native-slider (4.3.0):
+  - react-native-slider (4.3.1):
     - React-Core
   - React-perflogger (0.69.4)
   - React-RCTActionSheet (0.69.4):
@@ -675,7 +675,7 @@ SPEC CHECKSUMS:
   react-native-mmkv: 1265a348a4711097ba29c8bcefd5971f48220f2b
   react-native-pager-view: da490aa1f902c9a5aeecf0909cc975ad0e92e53e
   react-native-safe-area-context: b456e1c40ec86f5593d58b275bd0e9603169daca
-  react-native-slider: 70c5d4eaa12c27cc5be1ef6ee198d41a52484944
+  react-native-slider: d3ae4270cf8a8cc45a69912db0cc42b151560d5a
   React-perflogger: cb386fd44c97ec7f8199c04c12b22066b0f2e1e0
   React-RCTActionSheet: f803a85e46cf5b4066c2ac5e122447f918e9c6e5
   React-RCTAnimation: 19c80fa950ccce7f4db76a2a7f2cf79baae07fc7
