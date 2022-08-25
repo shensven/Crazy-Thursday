@@ -23,7 +23,7 @@
     "jotai": "^1.8.0",
     "lodash": "^4.17.21",
     "react": "18.0.0",
-    "react-native": "0.69.4",
+    "react-native": "0.69.5",
     "react-native-bars": "^1.2.2",
     "react-native-bootsplash": "^4.3.2",
     "react-native-device-info": "^10.0.2",
