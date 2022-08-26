@@ -74,7 +74,7 @@ PODS:
     - FlipperKit/FlipperKitNetworkPlugin
   - fmt (6.2.1)
   - glog (0.3.5)
-  - hermes-engine (0.69.4)
+  - hermes-engine (0.69.5)
   - libevent (2.1.12)
   - MMKV (1.2.14):
     - MMKVCore (~> 1.2.14)
@@ -650,7 +650,7 @@ SPEC CHECKSUMS:
   FlipperKit: 87dd306eef9927220672f98266e68bdab6c7cd69
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
-  hermes-engine: 761a544537e62df2a37189389b9d2654dc1f75af
+  hermes-engine: 479687cd0904b24f1b2ae71d1196b44786af5601
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   MMKV: 9c4663aa7ca255d478ff10f2f5cb7d17c1651ccd
   MMKVCore: 89f5c8a66bba2dcd551779dea4d412eeec8ff5bb
