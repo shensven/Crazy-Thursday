@@ -1,6 +1,7 @@
 import {atom} from 'jotai';
 import DeviceInfo from 'react-native-device-info';
-import {mmkvWelcome, mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings, mmkvDetailFontSize} from '../../App';
+// import {mmkvWelcome, mmkvAppearance, mmkvBrandKeywords, mmkvCopywritings, mmkvDetailFontSize} from '../../App';
+import {storage} from '../mmkv/mmkv';
 
 export type StatusBarStyle = 'light-content' | 'dark-content';
 export const atomStatusBarStyle = atom<StatusBarStyle>('dark-content');
@@ -16,35 +17,45 @@ export const atomDeviceType = atom(DeviceInfo.getDeviceType());
 
 // -----------------------------------------------------------------------------
 
-let initWelcome: boolean | undefined;
-if (mmkvWelcome) {
-  initWelcome = JSON.parse(mmkvWelcome);
-} else {
-  initWelcome = false;
-}
-export const atomWelcome = atom<boolean>(initWelcome!);
+const mmkvWelcome = storage.getString('@welcome');
+const atomInitWelcome = atom<boolean>(mmkvWelcome === undefined ? false : (JSON.parse(mmkvWelcome) as boolean));
+export const atomWelcome = atom(
+  get => get(atomInitWelcome),
+  (_get, set, newBool: boolean) => {
+    set(atomInitWelcome, newBool);
+    storage.set('@welcome', JSON.stringify(newBool));
+  },
+);
 
 // -----------------------------------------------------------------------------
 
-let initDetailFontSize: number | undefined;
-if (mmkvDetailFontSize) {
-  initDetailFontSize = JSON.parse(mmkvDetailFontSize);
-} else {
-  initDetailFontSize = 18;
-}
-export const atomDetailFontSize = atom<number>(initDetailFontSize!);
+const mmkvDetailFontSize = storage.getString('@detailFontSize');
+const atomInitDetailFontSize = atom<number>(
+  mmkvDetailFontSize === undefined ? 18 : (JSON.parse(mmkvDetailFontSize) as number),
+);
+export const atomDetailFontSize = atom(
+  get => get(atomInitDetailFontSize),
+  (_get, set, newNum: number) => {
+    set(atomInitDetailFontSize, newNum);
+    storage.set('@detailFontSize', JSON.stringify(newNum));
+  },
+);
 
 // -----------------------------------------------------------------------------
 
 export type Appearance = 'light' | 'dark' | 'followSystem';
 
-let initAppearance: Appearance | undefined;
-if (mmkvAppearance) {
-  initAppearance = JSON.parse(mmkvAppearance);
-} else {
-  initAppearance = 'followSystem';
-}
-export const atomAppearance = atom<Appearance>(initAppearance!);
+const mmkvAppearance = storage.getString('@appearance');
+const atomInitAppearance = atom<Appearance>(
+  mmkvAppearance === undefined ? 'followSystem' : (JSON.parse(mmkvAppearance) as Appearance),
+);
+export const atomAppearance = atom(
+  get => get(atomInitAppearance),
+  (_get, set, newAppearance: Appearance) => {
+    set(atomInitAppearance, newAppearance);
+    storage.set('@appearance', JSON.stringify(newAppearance));
+  },
+);
 
 // -----------------------------------------------------------------------------
 
@@ -52,13 +63,19 @@ export interface BrandKeywords {
   Chinese: string;
   English: string;
 }
-let initBrandKeywords: BrandKeywords | undefined;
-if (mmkvBrandKeywords) {
-  initBrandKeywords = JSON.parse(mmkvBrandKeywords);
-} else {
-  initBrandKeywords = {Chinese: '小申的店', English: 'SvenFE'};
-}
-export const atomBrandKeywords = atom<BrandKeywords>(initBrandKeywords!);
+const mmkvBrandKeywords = storage.getString('@brandKeywords');
+const atomInitBrandKeywords = atom<BrandKeywords>(
+  mmkvBrandKeywords === undefined
+    ? {Chinese: '小申的店', English: 'SvenFE'}
+    : (JSON.parse(mmkvBrandKeywords) as BrandKeywords),
+);
+export const atomBrandKeywords = atom(
+  get => get(atomInitBrandKeywords),
+  (_get, set, newBrandKeywords: BrandKeywords) => {
+    set(atomInitBrandKeywords, newBrandKeywords);
+    storage.set('@brandKeywords', JSON.stringify(newBrandKeywords));
+  },
+);
 
 // -----------------------------------------------------------------------------
 
@@ -66,15 +83,21 @@ export interface Copywriter {
   version: number;
   bundle: {text: string}[];
 }
-let initCopywritings: Copywriter | undefined;
-if (mmkvCopywritings) {
-  initCopywritings = JSON.parse(mmkvCopywritings);
-} else {
-  initCopywritings = {
-    version: 2022000000,
-    bundle: [
-      {text: '我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，${brand-zh-CN}疯狂星期四，我一定要吃。'},
-    ],
-  };
-}
-export const atomCopywritings = atom<Copywriter>(initCopywritings!);
+const mmkvCopywritings = storage.getString('@copywritings');
+const atomInitCopywritings = atom<Copywriter>(
+  mmkvCopywritings === undefined
+    ? {
+        version: 2022000000,
+        bundle: [
+          {text: '我开始留短发、减肥、换风格、开始往前冲，不好意思啊，这一次，${brand-zh-CN}疯狂星期四，我一定要吃。'},
+        ],
+      }
+    : (JSON.parse(mmkvCopywritings) as Copywriter),
+);
+export const atomCopywritings = atom(
+  get => get(atomInitCopywritings),
+  (_get, set, newCopywriter: Copywriter) => {
+    set(atomInitCopywritings, newCopywriter);
+    storage.set('@copywritings', JSON.stringify(newCopywriter));
+  },
+);

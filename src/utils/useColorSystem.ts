@@ -1,11 +1,10 @@
+import {useEffect} from 'react';
 import {useColorScheme} from 'react-native';
 import {DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme} from 'react-native-paper';
 import {DefaultTheme as NavigationDefaultTheme, DarkTheme as NavigationDarkTheme} from '@react-navigation/native';
 import {useAtom} from 'jotai';
 import {atomAppearance, atomHeaderBlurType, atomStatusBarStyle, HeaderBlurType, StatusBarStyle} from '../atoms/appAtom';
 import type {Appearance} from '../atoms/appAtom';
-import {storage} from '../../App';
-import {useEffect} from 'react';
 
 declare global {
   namespace ReactNativePaper {
@@ -120,7 +119,6 @@ const useColorSystem = () => {
       updateHeaderBlurType(colorScheme === 'dark' ? 'dark' : 'light');
     }
     setAppearance(_appearance);
-    storage.set('@appearance', JSON.stringify(_appearance));
   };
 
   const getPaperAppearance = () => {
