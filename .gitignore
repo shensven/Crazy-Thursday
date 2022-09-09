@@ -30,6 +30,7 @@ build/
 local.properties
 *.iml
 *.hprof
+.cxx/
 android/app/output-GooglePlayConsole.zip
 
 # node.js
