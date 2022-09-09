@@ -2103,10 +2103,10 @@ ahooks-v3-count@^1.0.0:
   resolved "https://registry.yarnpkg.com/ahooks-v3-count/-/ahooks-v3-count-1.0.0.tgz#ddeb392e009ad6e748905b3cbf63a9fd8262ca80"
   integrity sha512-V7uUvAwnimu6eh/PED4mCDjE7tokeZQLKlxg9lCTMPhN+NjsSbtdacByVlR1oluXQzD3MOw55wylDmQo4+S9ZQ==
 
-ahooks@^3.7.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/ahooks/-/ahooks-3.7.0.tgz#e143ad3f1f1a05387c30031bf5634c9e9fa05d87"
-  integrity sha512-IOZ6IpVeAd7aWtV2O+dBmCQc0aHt+WPG3B5tPHnVVcPnEq9FDJxx8IIA5hLxN4lRa1m1ZMx6pOE2rrYW7bjU6A==
+ahooks@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/ahooks/-/ahooks-3.7.1.tgz#f0c51ed85c82144fb1356e89b995584ece1edaf2"
+  integrity sha512-9fooKjhScNyJaIPnlWd13LkY1gQYqv3BqwSA9ynHg1ZUtDqAICuCRoedV97ylrEL6QqI4zeq3bO3lQxkfWVNcg==
   dependencies:
     "@types/js-cookie" "^2.x.x"
     ahooks-v3-count "^1.0.0"
@@ -5049,10 +5049,10 @@ joi@^17.2.1:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jotai@^1.8.2:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.8.2.tgz#7cbd0864e4279f5e895c414803759861fc60c7ce"
-  integrity sha512-jRKTQKChLAJGB3zG5zklJoMtpWYixUi2jK3pZd5ZRpH4pQnjYYEOAVYCzZGr4Ce5Uj7j0ffYoLM4ULAAQXUoGw==
+jotai@^1.8.3:
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.8.3.tgz#06595dd66bcf64dd370386eee9c7b386c2ccb2e7"
+  integrity sha512-bNAs/DMD6BEB4xxVku33CI+ZIFyCWG82Ms6JnvYunEvGCnviTTDBl+m0HKgijoHmcNM3fxQ5MARdG+wwokNxog==
 
 jpeg-js@0.4.2:
   version "0.4.2"
