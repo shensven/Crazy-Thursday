@@ -391,7 +391,7 @@ PODS:
     - React-perflogger (= 0.70.0)
   - RNBootSplash (4.3.2):
     - React-Core
-  - RNCClipboard (1.11.0):
+  - RNCClipboard (1.11.1):
     - React-Core
   - RNCMaskedView (0.2.7):
     - React-Core
@@ -689,7 +689,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 80c195ffcafb190f531fdc849dc2d19cb4bb2b34
   ReactCommon: de55f940495d7bf87b5d7bf55b5b15cdd50d7d7b
   RNBootSplash: 5f346163977573d6b2aeba1b25df9d2245c0d73c
-  RNCClipboard: 4b8bec7c195e27bcec746f52dff7601161683249
+  RNCClipboard: 2834e1c4af68697089cdd455ee4a4cdd198fa7dd
   RNCMaskedView: cb9670ea9239998340eaab21df13fa12a1f9de15
   RNDeviceInfo: 8b83e99e290deaf1bab71673cc636776ef647b6f
   RNGestureHandler: 28ad20bf02257791f7f137b31beef34b9549f54b
