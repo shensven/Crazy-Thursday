@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "react-native run-ios --simulator=\"iPhone 14 Pro\"",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
@@ -23,7 +23,7 @@
     "jotai": "^1.8.4",
     "lodash": "^4.17.21",
     "react": "18.1.0",
-    "react-native": "0.70.0",
+    "react-native": "0.70.1",
     "react-native-bars": "^1.2.2",
     "react-native-bootsplash": "^4.3.2",
     "react-native-device-info": "^10.2.0",
