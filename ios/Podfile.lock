@@ -397,7 +397,7 @@ PODS:
     - React-Core
   - RNDeviceInfo (10.2.0):
     - React-Core
-  - RNGestureHandler (2.6.0):
+  - RNGestureHandler (2.6.1):
     - React-Core
   - RNReanimated (2.10.0):
     - DoubleConversion
@@ -692,7 +692,7 @@ SPEC CHECKSUMS:
   RNCClipboard: 4b8bec7c195e27bcec746f52dff7601161683249
   RNCMaskedView: cb9670ea9239998340eaab21df13fa12a1f9de15
   RNDeviceInfo: 8b83e99e290deaf1bab71673cc636776ef647b6f
-  RNGestureHandler: 920eb17f5b1e15dae6e5ed1904045f8f90e0b11e
+  RNGestureHandler: 28ad20bf02257791f7f137b31beef34b9549f54b
   RNReanimated: 60e291d42c77752a0f6d6f358387bdf225a87c6e
   RNScreens: 0df01424e9e0ed7827200d6ed1087ddd06c493f9
   RNSVG: 1153e8eeb34c788841016c517dba9f57f20b762f
