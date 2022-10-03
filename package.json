@@ -28,7 +28,7 @@
     "react-native-bootsplash": "^4.3.2",
     "react-native-device-info": "^10.2.0",
     "react-native-fade": "^2.1.1",
-    "react-native-gesture-handler": "^2.6.1",
+    "react-native-gesture-handler": "^2.7.0",
     "react-native-linear-gradient": "^2.6.2",
     "react-native-mmkv": "^2.4.3",
     "react-native-pager-view": "^6.0.0",
