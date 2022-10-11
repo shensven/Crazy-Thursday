@@ -426,7 +426,7 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.18.0):
+  - RNScreens (3.18.1):
     - React-Core
     - React-RCTImage
   - RNSVG (13.2.0):
@@ -694,7 +694,7 @@ SPEC CHECKSUMS:
   RNDeviceInfo: c31137f22ee779fe3931d1a8d60cc1af80ef4077
   RNGestureHandler: b7a872907ee289ada902127f2554fa1d2c076122
   RNReanimated: 60e291d42c77752a0f6d6f358387bdf225a87c6e
-  RNScreens: f3230dd008a7d0ce5c0a8bc78ff12cf2315bda24
+  RNScreens: 1b7bb502dac62cc4cf01b94bea591c8da275132f
   RNSVG: 07037623c36f12e41312730622d5f6b3656227ca
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 043f8eb97345d0171f27fead4d1849cacf0472a5
