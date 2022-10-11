@@ -20,7 +20,7 @@
     "ahooks": "^3.7.1",
     "axios": "^0.27.2",
     "color": "^4.2.3",
-    "jotai": "^1.8.4",
+    "jotai": "^1.8.5",
     "lodash": "^4.17.21",
     "react": "18.1.0",
     "react-native": "0.70.2",
@@ -57,7 +57,7 @@
     "react-native-flipper": "^0.164.0",
     "react-native-mmkv-flipper-plugin": "^1.0.0",
     "react-test-renderer": "18.2.0",
-    "typescript": "^4.8.3"
+    "typescript": "^4.8.4"
   },
   "jest": {
     "preset": "react-native",
