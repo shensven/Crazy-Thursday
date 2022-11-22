@@ -1636,10 +1636,10 @@
     react-is "^16.13.0"
     use-latest-callback "^0.1.5"
 
-"@react-navigation/elements@^1.3.6":
-  version "1.3.6"
-  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.6.tgz#fa700318528db93f05144b1be4b691b9c1dd1abe"
-  integrity sha512-pNJ8R9JMga6SXOw6wGVN0tjmE6vegwPmJBL45SEMX2fqTfAk2ykDnlJHodRpHpAgsv0DaI8qX76z3A+aqKSU0w==
+"@react-navigation/elements@^1.3.6", "@react-navigation/elements@^1.3.7":
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/@react-navigation/elements/-/elements-1.3.7.tgz#40d80a7f34d645b605289da10bc4b6c3a7667215"
+  integrity sha512-OZg2N/dd2tl6qkfrWvmUjFsYsbEyHEv4NbZSBuT+CR+d1pzmexN2IeVmi4cEMoR7U7GwhFcHRevF36yBsjU/dw==
 
 "@react-navigation/native@^6.0.13":
   version "6.0.13"
@@ -1658,12 +1658,12 @@
   dependencies:
     nanoid "^3.1.23"
 
-"@react-navigation/stack@^6.3.4":
-  version "6.3.4"
-  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-6.3.4.tgz#c3b7a479aea609c0de609f91be7b2539dbae37c2"
-  integrity sha512-f4vQcbaDPSFHF1i6CnEYbA0Bnk5jRGMoCIs2/Tq0HwsUI62Mui1q5vvIlRDIi5QomJoHzhfTBp9IzMQ/sUQJlg==
+"@react-navigation/stack@^6.3.5":
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-6.3.5.tgz#c616ef78cbaa55938da993d871d9fc41801d41f4"
+  integrity sha512-G706Ow+8fhiLT5Cf48566YsjboU5h5ll9nva90xX3br7V6x0JMoGMvXjvbORZyzLuUytQO3mf0T3nVUuO52vZQ==
   dependencies:
-    "@react-navigation/elements" "^1.3.6"
+    "@react-navigation/elements" "^1.3.7"
     color "^4.2.3"
     warn-once "^0.1.0"
 
