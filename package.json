@@ -18,7 +18,7 @@
     "@react-navigation/native": "^6.0.16",
     "@react-navigation/stack": "^6.3.7",
     "ahooks": "^3.7.2",
-    "axios": "^0.27.2",
+    "axios": "^1.2.0",
     "color": "^4.2.3",
     "jotai": "^1.11.0",
     "lodash": "^4.17.21",
