@@ -57,7 +57,7 @@
     "react-native-flipper": "0.164.0",
     "react-native-mmkv-flipper-plugin": "^1.0.0",
     "react-test-renderer": "18.2.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.5"
   },
   "jest": {
     "preset": "react-native",
